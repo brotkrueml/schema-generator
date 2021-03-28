@@ -1,0 +1,43 @@
+{
+	"name": "brotkrueml/schema-generator",
+	"type": "typo3-cms-extension",
+	"description": "Generator for classes and viewhelpers for the TYPO3 schema extension",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Chris Müller",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=8.0",
+		"symfony/console": "^5.2",
+		"symfony/polyfill-php81": "^1.22",
+		"twig/twig": "^3.3"
+	},
+	"require-dev": {
+		"friendsofphp/php-cs-fixer": "^2.18",
+		"phpunit/phpunit": "^9.5",
+		"typo3/coding-standards": "^0.3"
+	},
+    "replace": {
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php80": "*"
+    },
+	"autoload": {
+		"psr-4": {
+			"Brotkrueml\\SchemaGenerator\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Brotkrueml\\SchemaGenerator\\Tests\\": "tests/"
+		}
+	},
+	"config": {
+		"sort-packages": true
+	},
+	"scripts": {
+		"fix-cs": "vendor/bin/php-cs-fixer fix"
+	}
+}
