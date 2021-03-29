@@ -40,7 +40,7 @@ jobs:
           composer update --no-progress
       - name: Run PHP linter
         run: |
-          find . -name \*.php  ! -path "./.Build/*" -exec php -l {} \;
+          find . -name \*.php  ! -path "./vendor/*" -exec php -l {} \;
       - name: Run unit tests
         run: |
           vendor/bin/phpunit -c tests/phpunit.xml.dist
