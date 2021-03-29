@@ -191,7 +191,7 @@ final class Generator
     {
         $properties = \array_values(\array_filter(
             $type->getProperties(),
-            fn (Property $property): bool => $property->getExtensionUri() === $this->extensionUri
+            fn (Property $property): bool => \in_array($property->getExtensionUri(), ['', $this->extensionUri], true)
         ));
 
         foreach ($type->getParentIds() as $parentTypeId) {
