@@ -24,6 +24,6 @@ final class TypeStorage
 
     public function getAllByExtension(string $extension): array
     {
-        return \array_filter($this->types, static fn (Type $type): bool => $type->getExtension() === $extension);
+        return \array_filter($this->types, static fn (Type $type): bool => $type->getExtensionUri() === $extension);
     }
 }

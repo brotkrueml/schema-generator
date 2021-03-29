@@ -16,7 +16,7 @@ final class Property
     public function __construct(
         private string $id,
         private array $types,
-        private string $extension
+        private string $extensionUri
     ) {
     }
 
@@ -30,8 +30,8 @@ final class Property
         return $this->types;
     }
 
-    public function getExtension(): string
+    public function getExtensionUri(): string
     {
-        return $this->extension;
+        return $this->extensionUri;
     }
 }

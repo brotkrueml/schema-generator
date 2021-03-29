@@ -20,7 +20,7 @@ final class Type
         private string $id,
         private string $comment,
         private array $subClassOf,
-        private string $extension
+        private string $extensionUri
     ) {
     }
 
@@ -39,9 +39,9 @@ final class Type
         return $this->subClassOf;
     }
 
-    public function getExtension(): string
+    public function getExtensionUri(): string
     {
-        return $this->extension;
+        return $this->extensionUri;
     }
 
     public function addProperty(Property $property): void
@@ -58,7 +58,7 @@ final class Type
     {
         return \array_filter(
             $this->properties,
-            static fn (Property $property): bool => \in_array($property->getExtension(), ['', $extension], true)
+            static fn (Property $property): bool => \in_array($property->getExtensionUri(), ['', $extension], true)
         );
     }
 

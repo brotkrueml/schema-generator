@@ -26,13 +26,13 @@ class TypeTest extends TestCase
             'SomeId',
             'some comment',
             ['SomeSubId'],
-            'some part of'
+            'https://bib.schema.org'
         );
 
         self::assertSame('SomeId', $subject->getId());
         self::assertSame('some comment', $subject->getComment());
         self::assertSame(['SomeSubId'], $subject->getParentIds());
-        self::assertSame('some part of', $subject->getExtension());
+        self::assertSame('https://bib.schema.org', $subject->getExtensionUri());
     }
 
     /**
@@ -41,13 +41,13 @@ class TypeTest extends TestCase
     public function addPropertyAndGetProperties(): void
     {
         $subject = new Type('SomeId', 'some comment', [], '');
-        $property1 = new Property('someProperty', ['SomeId'], 'some extension');
+        $property1 = new Property('someProperty', ['SomeId'], 'https://auto.schema.org');
         $subject->addProperty($property1);
 
         self::assertCount(1, $subject->getProperties());
         self::assertSame($property1, $subject->getProperties()[0]);
 
-        $property2 = new Property('anotherProperty', ['SomeId'], 'some extension');
+        $property2 = new Property('anotherProperty', ['SomeId'], 'https://auto.schema.org');
         $subject->addProperty($property2);
 
         self::assertCount(2, $subject->getProperties());
