@@ -31,7 +31,7 @@ class TypeBuilderTest extends TestCase
     {
         $actual = $this->subject->build($term);
 
-        self::assertSame($expected['label'], $actual->getId());
+        self::assertSame($expected['id'], $actual->getId());
         self::assertSame($expected['comment'], $actual->getComment());
         self::assertSame($expected['subClassOf'], $actual->getParentIds());
         self::assertSame($expected['isPartOf'], $actual->getExtensionUri());
@@ -47,7 +47,7 @@ class TypeBuilderTest extends TestCase
                 'rdfs:label' => 'Thing',
             ],
             'expected' => [
-                'label' => 'Thing',
+                'id' => 'Thing',
                 'comment' => 'The most generic type of item.',
                 'subClassOf' => [],
                 'isPartOf' => '',
@@ -68,7 +68,7 @@ class TypeBuilderTest extends TestCase
                 ],
             ],
             'expected' => [
-                'label' => 'CreativeWork',
+                'id' => 'CreativeWork',
                 'comment' => 'The most generic kind of creative work, including books, movies, photographs, software programs, etc.',
                 'subClassOf' => ['Thing'],
                 'isPartOf' => '',
@@ -98,7 +98,7 @@ class TypeBuilderTest extends TestCase
                 ]
             ],
             'expected' => [
-                'label' => 'ArchiveComponent',
+                'id' => 'ArchiveComponent',
                 'comment' => 'An intangible type to be applied to any archive content, carrying with it a set of properties required to describe archival items and collections.',
                 'subClassOf' => ['CreativeWork'],
                 'isPartOf' => 'http://pending.schema.org',
