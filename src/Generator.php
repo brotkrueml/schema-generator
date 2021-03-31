@@ -264,6 +264,7 @@ final class Generator
 
         \ksort($this->additionalProperties);
         \array_walk($this->additionalProperties, static function (array &$properties): void {
+            $properties = \array_unique($properties);
             \sort($properties);
         });
 
