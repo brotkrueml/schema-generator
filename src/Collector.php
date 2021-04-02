@@ -58,7 +58,7 @@ final class Collector
             );
         }
 
-        $this->schema = \json_decode(json: $schema, associative: true, flags: \JSON_THROW_ON_ERROR);
+        $this->schema = \json_decode($schema, true, flags: \JSON_THROW_ON_ERROR);
     }
 
     private function checkSchema(): void
