@@ -12,10 +12,9 @@ declare(strict_types=1);
 namespace Brotkrueml\SchemaGenerator;
 
 use Brotkrueml\SchemaGenerator\Dto\AdditionalProperties;
+use Brotkrueml\SchemaGenerator\Dto\Extension;
 use Brotkrueml\SchemaGenerator\Dto\Property;
 use Brotkrueml\SchemaGenerator\Dto\Type;
-use Brotkrueml\SchemaGenerator\Enumerations\Extensions;
-use Brotkrueml\SchemaGenerator\Enumerations\Namespaces;
 
 final class Generator
 {
@@ -37,7 +36,7 @@ final class Generator
 
     private AdditionalProperties $additionalProperties;
 
-    private string $extensionUri;
+    private Extension $extension;
     private string $namespace;
 
     private string $additionalPropertiesPath;
@@ -54,23 +53,17 @@ final class Generator
     public function __construct(
         private Writer $writer,
         private array $types,
-        private string $extension,
+        string $extension,
         private string $basePath,
     ) {
-        $this->defineExtensionUri();
         $this->definePaths();
         $this->checkPaths();
         $this->removeOldFiles();
-        $this->defineNamespace();
 
+        $this->extension = new Extension($extension);
         $this->additionalProperties = new AdditionalProperties();
         $this->webPageTypeIds = $this->identifySpecialTypes($this->types[self::ROOT_WEBPAGE_TYPE_ID]);
         $this->webPageElementTypeIds = $this->identifySpecialTypes($this->types[self::ROOT_WEBPAGEELEMENT_TYPE_ID]);
-    }
-
-    private function defineExtensionUri(): void
-    {
-        $this->extensionUri = \constant(\sprintf('%s::%s', Extensions::class, \strtoupper($this->extension)));
     }
 
     private function definePaths(): void
@@ -118,16 +111,11 @@ final class Generator
         @unlink($this->typeModelsPath . '/TypeModels.php');
     }
 
-    private function defineNamespace(): void
-    {
-        $this->namespace = \constant(Namespaces::class . '::' . \strtoupper($this->extension ?: 'core'));
-    }
-
     private function identifySpecialTypes(Type $type): array
     {
         $specialTypesForExtension = \array_values(\array_filter(
             $this->collectSpecialTypes($type),
-            fn (Type $type): bool => $type->getExtensionUri() === $this->extensionUri
+            fn (Type $type): bool => $type->getExtensionUri() === $this->extension->getExtensionUri()
         ));
         $specialTypeIds = \array_map(
             static fn (Type $type): string => $type->getId(),
@@ -168,11 +156,11 @@ final class Generator
 
         $properties = $this->collectProperties($type);
 
-        if ($type->getExtensionUri() === $this->extensionUri) {
+        if ($type->getExtensionUri() === $this->extension->getExtensionUri()) {
             $this->generateModelClass($typeId, $properties);
             $this->generateViewHelperClass($typeId);
             $this->addTypeToAvailableTypes($typeId);
-        } elseif ($this->extensionUri !== '') {
+        } elseif ($this->extension->getExtension() !== 'core') {
             $this->addAdditionalProperties($type, $properties);
         }
 
@@ -192,7 +180,7 @@ final class Generator
     {
         $properties = \array_values(\array_filter(
             $type->getProperties(),
-            fn (Property $property): bool => \in_array($property->getExtensionUri(), ['', $this->extensionUri], true)
+            fn (Property $property): bool => \in_array($property->getExtensionUri(), ['', $this->extension->getExtensionUri()], true)
         ));
 
         foreach ($type->getParentIds() as $parentTypeId) {
@@ -219,7 +207,7 @@ final class Generator
             'className' => $this->types[$typeId]->getId(),
             'isWebPageType' => \in_array($typeId, $this->webPageTypeIds),
             'isWebPageElementType' => \in_array($typeId, $this->webPageElementTypeIds),
-            'namespace' => $this->namespace,
+            'namespace' => $this->extension->getNamespace(),
             'properties' => $propertyIds,
         ];
 
@@ -231,7 +219,7 @@ final class Generator
         $context = [
             'comment' => $this->types[$typeId]->getComment(),
             'className' => $this->types[$typeId]->getId() . 'ViewHelper',
-            'namespace' => $this->namespace,
+            'namespace' => $this->extension->getNamespace(),
         ];
 
         $this->writer->write($this->viewHelpersPath, Writer::TEMPLATE_VIEWHELPER, $context);
@@ -246,7 +234,7 @@ final class Generator
     {
         $propertiesForExtension = \array_values(\array_filter(
             $properties,
-            fn (Property $property): bool => $property->getExtensionUri() === $this->extensionUri
+            fn (Property $property): bool => $property->getExtensionUri() === $this->extension->getExtensionUri()
         ));
 
         if (\count($propertiesForExtension) > 0) {
@@ -256,13 +244,12 @@ final class Generator
 
     private function registerAdditionalProperties(): void
     {
-        if ($this->extension === 'core') {
+        if ($this->extension->getExtension() === 'core') {
             return;
         }
 
         $context = [
-            'extension' => \ucfirst($this->extension),
-            'namespace' => $this->namespace,
+            'namespace' => $this->extension->getNamespace(),
             'additionalProperties' => $this->additionalProperties,
         ];
 
@@ -275,7 +262,7 @@ final class Generator
         \sort($types);
 
         $context = [
-            'namespace' => $this->namespace,
+            'namespace' => $this->extension->getNamespace(),
             'types' => $types,
         ];
 
