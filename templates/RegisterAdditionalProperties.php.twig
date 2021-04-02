@@ -7,7 +7,7 @@ use Brotkrueml\Schema\Event\RegisterAdditionalTypePropertiesEvent;
 use Brotkrueml\Schema\Model\Type;
 {% for extension, types in additionalProperties.terms %}
     {% if extension != 'core' %}
-        {% set namespace = availableExtensions.getNamespaceByExtension(extension) %}
+        {% set namespace = availableExtensions.getNamespaceByName(extension) %}
         use {{ namespace }}Model\Type as {{ extension|capitalize }}Type;
     {% endif %}
 {% endfor %}

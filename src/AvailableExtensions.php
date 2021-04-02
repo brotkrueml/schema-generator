@@ -43,7 +43,7 @@ final class AvailableExtensions
         return \array_pop($extensions);
     }
 
-    public function getNamespaceByExtension(string $name): string
+    public function getNamespaceByName(string $name): string
     {
         $extensions = \array_values(\array_filter(
             $this->extensions,

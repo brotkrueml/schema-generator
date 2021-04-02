@@ -76,16 +76,16 @@ class AvailableExtensionsTest extends TestCase
 
     /**
      * @test
-     * @dataProvider dataProviderForGetNamespaceByExtension
+     * @dataProvider dataProviderForGetNamespaceByName
      */
-    public function getNamespaceByExtensionReturnsCorrectExtension(string $name, string $expectedNamespace): void
+    public function getNamespaceByNameReturnsCorrectNamespace(string $name, string $expectedNamespace): void
     {
-        $actual = $this->subject->getNamespaceByExtension($name);
+        $actual = $this->subject->getNamespaceByName($name);
 
         self::assertSame($expectedNamespace, $actual);
     }
 
-    public function dataProviderForGetNamespaceByExtension(): \Generator
+    public function dataProviderForGetNamespaceByName(): \Generator
     {
         yield 'auto' => [
             'name' => 'auto',
@@ -116,11 +116,11 @@ class AvailableExtensionsTest extends TestCase
     /**
      * @test
      */
-    public function getNamespaceByExtensionThrowsExceptionOnInvalidUri(): void
+    public function getNamespaceByNameThrowsExceptionOnInvalidUri(): void
     {
         $this->expectException(\DomainException::class);
         $this->expectExceptionCode(1617384098);
 
-        $this->subject->getNamespaceByExtension('notexisting');
+        $this->subject->getNamespaceByName('notexisting');
     }
 }
