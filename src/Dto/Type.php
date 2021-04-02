@@ -54,14 +54,6 @@ final class Type
         return $this->properties;
     }
 
-    public function getPropertiesByExtensionUriWithCore(string $extension): array
-    {
-        return \array_filter(
-            $this->properties,
-            static fn (Property $property): bool => \in_array($property->getExtensionUri(), ['', $extension], true)
-        );
-    }
-
     public function addSubTypeId(string $subTypeId): void
     {
         if (!\in_array($subTypeId, $this->subTypeIds, true)) {
