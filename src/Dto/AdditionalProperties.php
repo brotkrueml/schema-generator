@@ -13,6 +13,9 @@ namespace Brotkrueml\SchemaGenerator\Dto;
 
 final class AdditionalProperties
 {
+    /**
+     * @var array<string, array<string, array<string>>
+     */
     private array $terms = [];
 
     public function addPropertiesToType(Type $type, Property ...$properties): void

@@ -11,15 +11,18 @@ declare(strict_types=1);
 
 namespace Brotkrueml\SchemaGenerator\Builder;
 
+use Brotkrueml\SchemaGenerator\AvailableExtensions;
 use Brotkrueml\SchemaGenerator\Dto\Type;
 use Brotkrueml\SchemaGenerator\Enumerations\Attributes;
 
 final class TypeBuilder
 {
+    private AvailableExtensions $availableExtensions;
     private Normaliser $normaliser;
 
     public function __construct()
     {
+        $this->availableExtensions = new AvailableExtensions();
         $this->normaliser = new Normaliser();
     }
 
@@ -45,7 +48,7 @@ final class TypeBuilder
             $id,
             $this->normaliser->normaliseComment($term[Attributes::COMMENT]),
             $subClassOf,
-            $isPartOf
+            $this->availableExtensions->getExtensionByUri($isPartOf)
         );
     }
 }

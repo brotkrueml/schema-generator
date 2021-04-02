@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\SchemaGenerator\Tests\Unit\Dto;
 
 use Brotkrueml\SchemaGenerator\Dto\AdditionalProperties;
+use Brotkrueml\SchemaGenerator\Dto\Extension;
 use Brotkrueml\SchemaGenerator\Dto\Property;
 use Brotkrueml\SchemaGenerator\Dto\Type;
 use PHPUnit\Framework\TestCase;
@@ -38,16 +39,16 @@ class AdditionalPropertiesTest extends TestCase
      */
     public function typesAndPropertiesAreReturnedCorrectly(): void
     {
-        $type1 = new Type('SomeType', '', [], '');
-        $property11 = new Property('x', [], '');
-        $property12 = new Property('a', [], '');
-        $property13 = new Property('b', [], '');
+        $type1 = new Type('SomeType', '', [], new Extension('core'));
+        $property11 = new Property('x', [], new Extension('core'));
+        $property12 = new Property('a', [], new Extension('core'));
+        $property13 = new Property('b', [], new Extension('core'));
         $this->subject->addPropertiesToType($type1, $property11, $property12, $property13);
 
-        $type2 = new Type('AnotherType', '', [], '');
-        $property21 = new Property('2', [], '');
-        $property22 = new Property('1', [], '');
-        $property23 = new Property('3', [], '');
+        $type2 = new Type('AnotherType', '', [], new Extension('core'));
+        $property21 = new Property('2', [], new Extension('core'));
+        $property22 = new Property('1', [], new Extension('core'));
+        $property23 = new Property('3', [], new Extension('core'));
         $this->subject->addPropertiesToType($type2, $property21, $property22, $property23);
 
         $actual = $this->subject->getTerms();

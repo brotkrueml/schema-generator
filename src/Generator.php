@@ -115,7 +115,7 @@ final class Generator
     {
         $specialTypesForExtension = \array_values(\array_filter(
             $this->collectSpecialTypes($type),
-            fn (Type $type): bool => $type->getExtensionUri() === $this->extension->getExtensionUri()
+            fn (Type $type): bool => (string)$type->getExtension() === (string)$this->extension
         ));
         $specialTypeIds = \array_map(
             static fn (Type $type): string => $type->getId(),
@@ -156,7 +156,7 @@ final class Generator
 
         $properties = $this->collectProperties($type);
 
-        if ($type->getExtensionUri() === $this->extension->getExtensionUri()) {
+        if ((string)$type->getExtension() === (string)$this->extension) {
             $this->generateModelClass($typeId, $properties);
             $this->generateViewHelperClass($typeId);
             $this->addTypeToAvailableTypes($typeId);
@@ -180,7 +180,7 @@ final class Generator
     {
         $properties = \array_values(\array_filter(
             $type->getProperties(),
-            fn (Property $property): bool => \in_array($property->getExtensionUri(), ['', $this->extension->getExtensionUri()], true)
+            fn (Property $property): bool => \in_array($property->getExtension()->getExtensionUri(), ['', $this->extension->getExtensionUri()], true)
         ));
 
         foreach ($type->getParentIds() as $parentTypeId) {
@@ -234,7 +234,7 @@ final class Generator
     {
         $propertiesForExtension = \array_values(\array_filter(
             $properties,
-            fn (Property $property): bool => $property->getExtensionUri() === $this->extension->getExtensionUri()
+            fn (Property $property): bool => $property->getExtension()->getExtensionUri() === $this->extension->getExtensionUri()
         ));
 
         if (\count($propertiesForExtension) > 0) {

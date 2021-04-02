@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\SchemaGenerator\Tests\Unit\Dto;
 
+use Brotkrueml\SchemaGenerator\Dto\Extension;
 use Brotkrueml\SchemaGenerator\Dto\Property;
 use Brotkrueml\SchemaGenerator\Dto\Type;
 use PHPUnit\Framework\TestCase;
@@ -26,13 +27,13 @@ class TypeTest extends TestCase
             'SomeId',
             'some comment',
             ['SomeSubId'],
-            'https://bib.schema.org'
+            new Extension('bib')
         );
 
         self::assertSame('SomeId', $subject->getId());
         self::assertSame('some comment', $subject->getComment());
         self::assertSame(['SomeSubId'], $subject->getParentIds());
-        self::assertSame('https://bib.schema.org', $subject->getExtensionUri());
+        self::assertSame('bib', $subject->getExtension()->getExtension());
     }
 
     /**
@@ -40,14 +41,14 @@ class TypeTest extends TestCase
      */
     public function addPropertyAndGetProperties(): void
     {
-        $subject = new Type('SomeId', 'some comment', [], '');
-        $property1 = new Property('someProperty', ['SomeId'], 'https://auto.schema.org');
+        $subject = new Type('SomeId', 'some comment', [], new Extension('core'));
+        $property1 = new Property('someProperty', ['SomeId'], new Extension('auto'));
         $subject->addProperty($property1);
 
         self::assertCount(1, $subject->getProperties());
         self::assertSame($property1, $subject->getProperties()[0]);
 
-        $property2 = new Property('anotherProperty', ['SomeId'], 'https://auto.schema.org');
+        $property2 = new Property('anotherProperty', ['SomeId'], new Extension('auto'));
         $subject->addProperty($property2);
 
         self::assertCount(2, $subject->getProperties());

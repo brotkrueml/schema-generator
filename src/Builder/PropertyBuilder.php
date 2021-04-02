@@ -11,15 +11,18 @@ declare(strict_types=1);
 
 namespace Brotkrueml\SchemaGenerator\Builder;
 
+use Brotkrueml\SchemaGenerator\AvailableExtensions;
 use Brotkrueml\SchemaGenerator\Dto\Property;
 use Brotkrueml\SchemaGenerator\Enumerations\Attributes;
 
 final class PropertyBuilder
 {
+    private AvailableExtensions $availableExtensions;
     private Normaliser $normaliser;
 
     public function __construct()
     {
+        $this->availableExtensions = new AvailableExtensions();
         $this->normaliser = new Normaliser();
     }
 
@@ -38,7 +41,7 @@ final class PropertyBuilder
         return new Property(
             $this->normaliser->normaliseId($term[Attributes::ID]),
             $domainIncludes,
-            $isPartOf
+            $this->availableExtensions->getExtensionByUri($isPartOf)
         );
     }
 }

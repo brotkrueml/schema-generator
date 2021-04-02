@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\SchemaGenerator\Tests\Unit\Dto;
 
+use Brotkrueml\SchemaGenerator\Dto\Extension;
 use Brotkrueml\SchemaGenerator\Dto\Property;
 use Brotkrueml\SchemaGenerator\Dto\Type;
 use PHPUnit\Framework\TestCase;
@@ -22,16 +23,16 @@ class PropertyTest extends TestCase
      */
     public function gettersImplementedCorrectly(): void
     {
-        $types = [new Type('SomeTypeId', '', [], '')];
+        $types = [new Type('SomeTypeId', '', [], new Extension('core'))];
 
         $subject = new Property(
             'SomeId',
             $types,
-            'https://auto.schema.org'
+            new Extension('auto')
         );
 
         self::assertSame('SomeId', $subject->getId());
         self::assertSame($types, $subject->getTypes());
-        self::assertSame('https://auto.schema.org', $subject->getExtensionUri());
+        self::assertSame('auto', $subject->getExtension()->getExtension());
     }
 }

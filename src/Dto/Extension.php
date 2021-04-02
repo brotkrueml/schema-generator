@@ -14,7 +14,7 @@ namespace Brotkrueml\SchemaGenerator\Dto;
 use Brotkrueml\SchemaGenerator\Enumerations\Extensions;
 use Brotkrueml\SchemaGenerator\Enumerations\Namespaces;
 
-final class Extension
+final class Extension implements \Stringable
 {
     private string $extensionUri;
     private string $namespace;
@@ -54,5 +54,10 @@ final class Extension
     public function getNamespace(): string
     {
         return $this->namespace;
+    }
+
+    public function __toString()
+    {
+        return $this->extension;
     }
 }

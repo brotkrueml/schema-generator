@@ -20,7 +20,7 @@ final class Type
         private string $id,
         private string $comment,
         private array $subClassOf,
-        private string $extensionUri
+        private Extension $extension
     ) {
     }
 
@@ -39,9 +39,9 @@ final class Type
         return $this->subClassOf;
     }
 
-    public function getExtensionUri(): string
+    public function getExtension(): Extension
     {
-        return $this->extensionUri;
+        return $this->extension;
     }
 
     public function addProperty(Property $property): void

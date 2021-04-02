@@ -33,7 +33,7 @@ class PropertyBuilderTest extends TestCase
 
         self::assertSame($expected['id'], $actual->getId());
         self::assertSame($expected['types'], $actual->getTypes());
-        self::assertSame($expected['extensionUri'], $actual->getExtensionUri());
+        self::assertSame($expected['extension'], $actual->getExtension()->getExtension());
     }
 
     public function dataProvider(): \Generator
@@ -52,7 +52,7 @@ class PropertyBuilderTest extends TestCase
             'expected' => [
                 'id' => 'dateModified',
                 'types' => ['DataFeedItem', 'CreativeWork'],
-                'extensionUri' => '',
+                'extension' => 'core',
             ],
         ];
 
@@ -68,7 +68,7 @@ class PropertyBuilderTest extends TestCase
             'expected' => [
                 'id' => 'bodyType',
                 'types' => ['Vehicle'],
-                'extensionUri' => 'https://auto.schema.org',
+                'extension' => 'auto',
             ],
         ];
     }

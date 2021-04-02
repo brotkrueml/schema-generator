@@ -29,6 +29,7 @@ class ExtensionTest extends TestCase
         self::assertSame($extension, $subject->getExtension());
         self::assertSame($extensionUri, $subject->getExtensionUri());
         self::assertSame($namespace, $subject->getNamespace());
+        self::assertSame($extension, (string)$subject);
     }
 
     public function dataProviderForExtensions(): \Generator

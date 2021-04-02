@@ -71,6 +71,10 @@ final class Collector
     private function collectTypes(): void
     {
         foreach ($this->schema['@graph'] as $term) {
+            if ($this->isMetaExtension($term)) {
+                continue;
+            }
+
             // Check if type is really a type
             // It can also be an array (e.g. with a data type which we don't want)
             // or a enumeration type starting with "schema:", which we also do not cover
@@ -88,9 +92,22 @@ final class Collector
         \ksort($this->types);
     }
 
+    private function isMetaExtension(array $term): bool
+    {
+        if ($term[Attributes::IS_PART_OF] ?? false) {
+            return $term[Attributes::IS_PART_OF][Attributes::ID] === 'https://meta.schema.org';
+        }
+
+        return false;
+    }
+
     private function assignPropertiesToTypes(): void
     {
         foreach ($this->schema['@graph'] as $term) {
+            if ($this->isMetaExtension($term)) {
+                continue;
+            }
+
             if ($term['@type'] !== self::TYPE_PROPERTY) {
                 continue;
             }

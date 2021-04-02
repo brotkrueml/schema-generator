@@ -34,7 +34,7 @@ class TypeBuilderTest extends TestCase
         self::assertSame($expected['id'], $actual->getId());
         self::assertSame($expected['comment'], $actual->getComment());
         self::assertSame($expected['subClassOf'], $actual->getParentIds());
-        self::assertSame($expected['isPartOf'], $actual->getExtensionUri());
+        self::assertSame($expected['isPartOf'], $actual->getExtension()->getExtensionUri());
     }
 
     public function dataProvider(): \Generator
@@ -91,7 +91,7 @@ class TypeBuilderTest extends TestCase
                     '@id' => 'schema:CreativeWork'
                 ],
                 'schema:isPartOf' => [
-                    '@id' => 'http://pending.schema.org'
+                    '@id' => 'https://pending.schema.org'
                 ],
                 'schema:source' => [
                     '@id' => 'https://github.com/schemaorg/schemaorg/issues/1758'
@@ -101,7 +101,7 @@ class TypeBuilderTest extends TestCase
                 'id' => 'ArchiveComponent',
                 'comment' => 'An intangible type to be applied to any archive content, carrying with it a set of properties required to describe archival items and collections.',
                 'subClassOf' => ['CreativeWork'],
-                'isPartOf' => 'http://pending.schema.org',
+                'isPartOf' => 'https://pending.schema.org',
             ],
         ];
     }
