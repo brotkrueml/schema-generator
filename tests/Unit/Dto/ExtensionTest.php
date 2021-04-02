@@ -22,45 +22,45 @@ class ExtensionTest extends TestCase
      * @test
      * @dataProvider dataProviderForExtensions
      */
-    public function objectIsInitialisedCorrectly(string $extension, string $extensionUri, string $namespace): void
+    public function objectIsInitialisedCorrectly(string $name, string $uri, string $namespace): void
     {
-        $subject = new Extension($extension);
+        $subject = new Extension($name);
 
-        self::assertSame($extension, $subject->getExtension());
-        self::assertSame($extensionUri, $subject->getExtensionUri());
+        self::assertSame($name, $subject->getName());
+        self::assertSame($uri, $subject->getUri());
         self::assertSame($namespace, $subject->getNamespace());
-        self::assertSame($extension, (string)$subject);
+        self::assertSame($name, (string)$subject);
     }
 
     public function dataProviderForExtensions(): \Generator
     {
         yield 'auto' => [
-            'extension' => 'auto',
-            'extensionUri' => Extensions::AUTO,
+            'name' => 'auto',
+            'uri' => Extensions::AUTO,
             'namespace' => Namespaces::AUTO,
         ];
 
         yield 'bib' => [
-            'extension' => 'bib',
-            'extensionUri' => Extensions::BIB,
+            'name' => 'bib',
+            'uri' => Extensions::BIB,
             'namespace' => Namespaces::BIB,
         ];
 
         yield 'core' => [
-            'extension' => 'core',
-            'extensionUri' => Extensions::CORE,
+            'name' => 'core',
+            'uri' => Extensions::CORE,
             'namespace' => Namespaces::CORE,
         ];
 
         yield 'health' => [
-            'extension' => 'health',
-            'extensionUri' => Extensions::HEALTH,
+            'name' => 'health',
+            'uri' => Extensions::HEALTH,
             'namespace' => Namespaces::HEALTH,
         ];
 
         yield 'pending' => [
-            'extension' => 'PENDING',
-            'extensionUri' => Extensions::PENDING,
+            'name' => 'PENDING',
+            'uri' => Extensions::PENDING,
             'namespace' => Namespaces::PENDING,
         ];
     }

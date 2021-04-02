@@ -28,45 +28,45 @@ class AvailableExtensionsTest extends TestCase
      * @test
      * @dataProvider dataProviderForGetExtensionByUri
      */
-    public function getExtensionByUriReturnsCorrectExtension(string $extensionUri, string $expectedExtension): void
+    public function getExtensionByUriReturnsCorrectExtension(string $uri, string $expectedName): void
     {
-        $actual = $this->subject->getExtensionByUri($extensionUri);
+        $actual = $this->subject->getExtensionByUri($uri);
 
-        self::assertSame($expectedExtension, $actual->getExtension());
+        self::assertSame($expectedName, $actual->getName());
     }
 
     public function dataProviderForGetExtensionByUri(): \Generator
     {
         yield 'auto' => [
-            'extensionUri' => 'https://auto.schema.org',
-            'expectedExtension' => 'auto',
+            'uri' => 'https://auto.schema.org',
+            'expectedName' => 'auto',
         ];
 
         yield 'bib' => [
-            'extensionUri' => 'https://bib.schema.org',
-            'expectedExtension' => 'bib',
+            'uri' => 'https://bib.schema.org',
+            'expectedName' => 'bib',
         ];
 
         yield 'core' => [
-            'extensionUri' => '',
-            'expectedExtension' => 'core',
+            'uri' => '',
+            'expectedName' => 'core',
         ];
 
         yield 'health' => [
-            'extensionUri' => 'https://health-lifesci.schema.org',
-            'expectedExtension' => 'health',
+            'uri' => 'https://health-lifesci.schema.org',
+            'expectedName' => 'health',
         ];
 
         yield 'pending' => [
-            'extensionUri' => 'https://pending.schema.org',
-            'expectedExtension' => 'pending',
+            'uri' => 'https://pending.schema.org',
+            'expectedName' => 'pending',
         ];
     }
 
     /**
      * @test
      */
-    public function getByExtensionUriThrowsExceptionOnInvalidUri(): void
+    public function getByuriThrowsExceptionOnInvalidUri(): void
     {
         $this->expectException(\DomainException::class);
         $this->expectExceptionCode(1617384097);
@@ -78,9 +78,9 @@ class AvailableExtensionsTest extends TestCase
      * @test
      * @dataProvider dataProviderForGetNamespaceByExtension
      */
-    public function getNamespaceByExtensionReturnsCorrectExtension(string $extension, string $expectedNamespace): void
+    public function getNamespaceByExtensionReturnsCorrectExtension(string $name, string $expectedNamespace): void
     {
-        $actual = $this->subject->getNamespaceByExtension($extension);
+        $actual = $this->subject->getNamespaceByExtension($name);
 
         self::assertSame($expectedNamespace, $actual);
     }
@@ -88,27 +88,27 @@ class AvailableExtensionsTest extends TestCase
     public function dataProviderForGetNamespaceByExtension(): \Generator
     {
         yield 'auto' => [
-            'extension' => 'auto',
+            'name' => 'auto',
             'expectedNamespace' => Namespaces::AUTO,
         ];
 
         yield 'bib' => [
-            'extension' => 'bib',
+            'name' => 'bib',
             'expectedNamespace' => Namespaces::BIB,
         ];
 
         yield 'core' => [
-            'extension' => 'core',
+            'name' => 'core',
             'expectedNamespace' => Namespaces::CORE,
         ];
 
         yield 'health' => [
-            'extension' => 'health',
+            'name' => 'health',
             'expectedNamespace' => Namespaces::HEALTH,
         ];
 
         yield 'pending' => [
-            'extension' => 'pending',
+            'name' => 'pending',
             'expectedNamespace' => Namespaces::PENDING,
         ];
     }

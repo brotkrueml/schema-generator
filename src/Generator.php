@@ -161,7 +161,7 @@ final class Generator
             $this->generateModelClass($typeId, $properties);
             $this->generateViewHelperClass($typeId);
             $this->addTypeToAvailableTypes($typeId);
-        } elseif ($this->extension->getExtension() !== 'core') {
+        } elseif ($this->extension->getName() !== 'core') {
             $this->addAdditionalProperties($type, $properties);
         }
 
@@ -181,7 +181,7 @@ final class Generator
     {
         $properties = \array_values(\array_filter(
             $type->getProperties(),
-            fn (Property $property): bool => \in_array($property->getExtension()->getExtensionUri(), ['', $this->extension->getExtensionUri()], true)
+            fn (Property $property): bool => \in_array($property->getExtension()->getUri(), ['', $this->extension->getUri()], true)
         ));
 
         foreach ($type->getParentIds() as $parentTypeId) {
@@ -245,7 +245,7 @@ final class Generator
 
     private function registerAdditionalProperties(): void
     {
-        if ($this->extension->getExtension() === 'core') {
+        if ($this->extension->getName() === 'core') {
             return;
         }
 

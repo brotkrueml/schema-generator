@@ -34,7 +34,7 @@ class TypeBuilderTest extends TestCase
         self::assertSame($expected['id'], $actual->getId());
         self::assertSame($expected['comment'], $actual->getComment());
         self::assertSame($expected['subClassOf'], $actual->getParentIds());
-        self::assertSame($expected['isPartOf'], $actual->getExtension()->getExtensionUri());
+        self::assertSame($expected['isPartOf'], $actual->getExtension()->getUri());
     }
 
     public function dataProvider(): \Generator

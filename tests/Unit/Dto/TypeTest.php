@@ -33,7 +33,7 @@ class TypeTest extends TestCase
         self::assertSame('SomeId', $subject->getId());
         self::assertSame('some comment', $subject->getComment());
         self::assertSame(['SomeSubId'], $subject->getParentIds());
-        self::assertSame('bib', $subject->getExtension()->getExtension());
+        self::assertSame('bib', $subject->getExtension()->getName());
     }
 
     /**

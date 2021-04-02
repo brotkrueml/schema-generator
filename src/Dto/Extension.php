@@ -16,39 +16,39 @@ use Brotkrueml\SchemaGenerator\Enumerations\Namespaces;
 
 final class Extension implements \Stringable
 {
-    private string $extensionUri;
+    private string $uri;
     private string $namespace;
 
-    public function __construct(private string $extension)
+    public function __construct(private string $name)
     {
-        $extensionConstant = Extensions::class . '::' . \strtoupper($extension);
+        $extensionConstant = Extensions::class . '::' . \strtoupper($name);
         if (!\defined($extensionConstant)) {
             throw new \InvalidArgumentException(
-                \sprintf('Extension "%s" is not defined', $extension),
+                \sprintf('Extension "%s" is not defined', $name),
                 1617382155
             );
         }
 
-        $namespaceConstant = Namespaces::class . '::' . \strtoupper($extension);
+        $namespaceConstant = Namespaces::class . '::' . \strtoupper($name);
         if (!\defined($namespaceConstant)) {
             throw new \InvalidArgumentException(
-                \sprintf('Namespace for extension "%s" is not defined', $extension),
+                \sprintf('Namespace for extension "%s" is not defined', $name),
                 1617382156
             );
         }
 
-        $this->extensionUri = \constant($extensionConstant);
+        $this->uri = \constant($extensionConstant);
         $this->namespace = \constant($namespaceConstant);
     }
 
-    public function getExtension(): string
+    public function getName(): string
     {
-        return $this->extension;
+        return $this->name;
     }
 
-    public function getExtensionUri(): string
+    public function getUri(): string
     {
-        return $this->extensionUri;
+        return $this->uri;
     }
 
     public function getNamespace(): string
@@ -58,6 +58,6 @@ final class Extension implements \Stringable
 
     public function __toString()
     {
-        return $this->extension;
+        return $this->name;
     }
 }

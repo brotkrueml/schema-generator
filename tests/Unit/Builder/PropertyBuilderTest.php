@@ -33,7 +33,7 @@ class PropertyBuilderTest extends TestCase
 
         self::assertSame($expected['id'], $actual->getId());
         self::assertSame($expected['types'], $actual->getTypes());
-        self::assertSame($expected['extension'], $actual->getExtension()->getExtension());
+        self::assertSame($expected['extension'], $actual->getExtension()->getName());
     }
 
     public function dataProvider(): \Generator

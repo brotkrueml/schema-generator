@@ -33,6 +33,6 @@ class PropertyTest extends TestCase
 
         self::assertSame('SomeId', $subject->getId());
         self::assertSame($types, $subject->getTypes());
-        self::assertSame('auto', $subject->getExtension()->getExtension());
+        self::assertSame('auto', $subject->getExtension()->getName());
     }
 }

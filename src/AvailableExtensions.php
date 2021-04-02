@@ -26,16 +26,16 @@ final class AvailableExtensions
         }
     }
 
-    public function getExtensionByUri(string $extensionUri): Extension
+    public function getExtensionByUri(string $uri): Extension
     {
         $extensions = \array_filter(
             $this->extensions,
-            static fn (Extension $extension): bool => $extension->getExtensionUri() === $extensionUri
+            static fn (Extension $extension): bool => $extension->getUri() === $uri
         );
 
         if (\count($extensions) === 0) {
             throw new \DomainException(
-                \sprintf('Extension uri "%s" not available', $extensionUri),
+                \sprintf('Extension uri "%s" not available', $uri),
                 1617384097
             );
         }
@@ -43,16 +43,16 @@ final class AvailableExtensions
         return \array_pop($extensions);
     }
 
-    public function getNamespaceByExtension(string $key): string
+    public function getNamespaceByExtension(string $name): string
     {
         $extensions = \array_values(\array_filter(
             $this->extensions,
-            static fn (Extension $extension): bool => $extension->getExtension() === $key
+            static fn (Extension $extension): bool => $extension->getName() === $name
         ));
 
         if (\count($extensions) === 0) {
             throw new \DomainException(
-                \sprintf('Extension "%s" not available', $key),
+                \sprintf('Extension name "%s" is not available', $name),
                 1617384098
             );
         }
