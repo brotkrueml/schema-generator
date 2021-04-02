@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\SchemaGenerator;
 
+use Brotkrueml\SchemaGenerator\Dto\AdditionalProperties;
 use Brotkrueml\SchemaGenerator\Dto\Property;
 use Brotkrueml\SchemaGenerator\Dto\Type;
 use Brotkrueml\SchemaGenerator\Enumerations\Extensions;
@@ -34,8 +35,7 @@ final class Generator
     /** @var string[] */
     private array $webPageElementTypeIds = [];
 
-    /** @var array<string, array<string>> */
-    private array $additionalProperties = [];
+    private AdditionalProperties $additionalProperties;
 
     private string $extensionUri;
     private string $namespace;
@@ -63,6 +63,7 @@ final class Generator
         $this->removeOldFiles();
         $this->defineNamespace();
 
+        $this->additionalProperties = new AdditionalProperties();
         $this->webPageTypeIds = $this->identifySpecialTypes($this->types[self::ROOT_WEBPAGE_TYPE_ID]);
         $this->webPageElementTypeIds = $this->identifySpecialTypes($this->types[self::ROOT_WEBPAGEELEMENT_TYPE_ID]);
     }
@@ -172,7 +173,7 @@ final class Generator
             $this->generateViewHelperClass($typeId);
             $this->addTypeToAvailableTypes($typeId);
         } elseif ($this->extensionUri !== '') {
-            $this->addAdditionalProperties($typeId, $properties);
+            $this->addAdditionalProperties($type, $properties);
         }
 
         foreach ($type->getSubTypeIds() as $subTypeId) {
@@ -241,7 +242,7 @@ final class Generator
         $this->availableTypes[] = $this->types[$typeId]->getId();
     }
 
-    private function addAdditionalProperties(string $typeId, array $properties): void
+    private function addAdditionalProperties(Type $type, array $properties): void
     {
         $propertiesForExtension = \array_values(\array_filter(
             $properties,
@@ -249,10 +250,7 @@ final class Generator
         ));
 
         if (\count($propertiesForExtension) > 0) {
-            $this->additionalProperties[$typeId] = \array_map(
-                static fn (Property $property): string => $property->getId(),
-                $propertiesForExtension
-            );
+            $this->additionalProperties->addPropertiesToType($type, ...$propertiesForExtension);
         }
     }
 
@@ -261,12 +259,6 @@ final class Generator
         if ($this->extension === 'core') {
             return;
         }
-
-        \ksort($this->additionalProperties);
-        \array_walk($this->additionalProperties, static function (array &$properties): void {
-            $properties = \array_unique($properties);
-            \sort($properties);
-        });
 
         $context = [
             'extension' => \ucfirst($this->extension),
