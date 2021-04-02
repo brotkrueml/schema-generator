@@ -37,7 +37,7 @@ final class Generator
     private AdditionalProperties $additionalProperties;
 
     private Extension $extension;
-    private string $namespace;
+    private AvailableExtensions $availableExtensions;
 
     private string $additionalPropertiesPath;
     private string $modelPath;
@@ -61,7 +61,8 @@ final class Generator
         $this->removeOldFiles();
 
         $this->extension = new Extension($extension);
-        $this->additionalProperties = new AdditionalProperties();
+        $this->availableExtensions = new AvailableExtensions();
+        $this->additionalProperties = new AdditionalProperties($this->extension);
         $this->webPageTypeIds = $this->identifySpecialTypes($this->types[self::ROOT_WEBPAGE_TYPE_ID]);
         $this->webPageElementTypeIds = $this->identifySpecialTypes($this->types[self::ROOT_WEBPAGEELEMENT_TYPE_ID]);
     }
@@ -234,7 +235,7 @@ final class Generator
     {
         $propertiesForExtension = \array_values(\array_filter(
             $properties,
-            fn (Property $property): bool => $property->getExtension()->getExtensionUri() === $this->extension->getExtensionUri()
+            fn (Property $property): bool => (string)$property->getExtension() === (string)$this->extension
         ));
 
         if (\count($propertiesForExtension) > 0) {
@@ -249,6 +250,7 @@ final class Generator
         }
 
         $context = [
+            'availableExtensions' => $this->availableExtensions,
             'namespace' => $this->extension->getNamespace(),
             'additionalProperties' => $this->additionalProperties,
         ];

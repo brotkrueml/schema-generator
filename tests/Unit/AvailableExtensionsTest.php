@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\SchemaGenerator\Tests\Unit;
 
 use Brotkrueml\SchemaGenerator\AvailableExtensions;
+use Brotkrueml\SchemaGenerator\Enumerations\Namespaces;
 use PHPUnit\Framework\TestCase;
 
 class AvailableExtensionsTest extends TestCase
@@ -25,16 +26,16 @@ class AvailableExtensionsTest extends TestCase
 
     /**
      * @test
-     * @dataProvider dataProviderForGetByExtensionUri
+     * @dataProvider dataProviderForGetExtensionByUri
      */
-    public function getByExtensionUriReturnsCorrectExtension(string $extensionUri, string $expectedExtension): void
+    public function getExtensionByUriReturnsCorrectExtension(string $extensionUri, string $expectedExtension): void
     {
         $actual = $this->subject->getExtensionByUri($extensionUri);
 
         self::assertSame($expectedExtension, $actual->getExtension());
     }
 
-    public function dataProviderForGetByExtensionUri(): \Generator
+    public function dataProviderForGetExtensionByUri(): \Generator
     {
         yield 'auto' => [
             'extensionUri' => 'https://auto.schema.org',
@@ -71,5 +72,55 @@ class AvailableExtensionsTest extends TestCase
         $this->expectExceptionCode(1617384097);
 
         $this->subject->getExtensionByUri('notexisting');
+    }
+
+    /**
+     * @test
+     * @dataProvider dataProviderForGetNamespaceByExtension
+     */
+    public function getNamespaceByExtensionReturnsCorrectExtension(string $extension, string $expectedNamespace): void
+    {
+        $actual = $this->subject->getNamespaceByExtension($extension);
+
+        self::assertSame($expectedNamespace, $actual);
+    }
+
+    public function dataProviderForGetNamespaceByExtension(): \Generator
+    {
+        yield 'auto' => [
+            'extension' => 'auto',
+            'expectedNamespace' => Namespaces::AUTO,
+        ];
+
+        yield 'bib' => [
+            'extension' => 'bib',
+            'expectedNamespace' => Namespaces::BIB,
+        ];
+
+        yield 'core' => [
+            'extension' => 'core',
+            'expectedNamespace' => Namespaces::CORE,
+        ];
+
+        yield 'health' => [
+            'extension' => 'health',
+            'expectedNamespace' => Namespaces::HEALTH,
+        ];
+
+        yield 'pending' => [
+            'extension' => 'pending',
+            'expectedNamespace' => Namespaces::PENDING,
+        ];
+    }
+
+    /**
+     * @test
+     */
+    public function getNamespaceByExtensionThrowsExceptionOnInvalidUri(): void
+    {
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionCode(1617384098);
+
+        $this->subject->getNamespaceByExtension('notexisting');
     }
 }

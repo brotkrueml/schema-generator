@@ -5,17 +5,38 @@ namespace {{ namespace }}EventListener;
 
 use Brotkrueml\Schema\Event\RegisterAdditionalTypePropertiesEvent;
 use Brotkrueml\Schema\Model\Type;
+{% for extension, types in additionalProperties.terms %}
+    {% if extension != 'core' %}
+        {% set namespace = availableExtensions.getNamespaceByExtension(extension) %}
+        use {{ namespace }}Model\Type as {{ extension|capitalize }}Type;
+    {% endif %}
+{% endfor %}
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 final class RegisterAdditionalProperties
 {
     public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
     {
-        {% for term in additionalProperties.terms %}
-            if ($event->getType() === Type\{{ term.type.id }}::class) {
-                {% for property in term.properties %}
-                    $event->registerAdditionalProperty('{{ property }}');
+        {% for extension, types in additionalProperties.terms %}
+            {% if extension == 'core' %}
+                {% for type, properties in types %}
+                    if ($event->getType() === Type\{{ type }}::class) {
+                        {% for property in properties %}
+                            $event->registerAdditionalProperty('{{ property }}');
+                        {% endfor %}
+                    }
                 {% endfor %}
-            }
+            {% else %}
+                if (ExtensionManagementUtility::isLoaded('schema_{{ extension }}')) {
+                    {% for type, properties in types %}
+                        if ($event->getType() === {{ extension|capitalize }}Type\{{ type }}::class) {
+                            {% for property in properties %}
+                                $event->registerAdditionalProperty('{{ property }}');
+                            {% endfor %}
+                        }
+                    {% endfor %}
+                }
+            {% endif %}
         {% endfor %}
     }
 }

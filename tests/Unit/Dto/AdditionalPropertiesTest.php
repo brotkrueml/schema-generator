@@ -23,7 +23,7 @@ class AdditionalPropertiesTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->subject = new AdditionalProperties();
+        $this->subject = new AdditionalProperties(new Extension('auto'));
     }
 
     /**
@@ -39,23 +39,28 @@ class AdditionalPropertiesTest extends TestCase
      */
     public function typesAndPropertiesAreReturnedCorrectly(): void
     {
-        $type1 = new Type('SomeType', '', [], new Extension('core'));
-        $property11 = new Property('x', [], new Extension('core'));
-        $property12 = new Property('a', [], new Extension('core'));
-        $property13 = new Property('b', [], new Extension('core'));
+        $type1 = new Type('BibType', '', [], new Extension('bib'));
+        $property11 = new Property('x', [], new Extension('bib'));
+        $property12 = new Property('a', [], new Extension('bib'));
+        $property13 = new Property('b', [], new Extension('bib'));
         $this->subject->addPropertiesToType($type1, $property11, $property12, $property13);
 
-        $type2 = new Type('AnotherType', '', [], new Extension('core'));
-        $property21 = new Property('2', [], new Extension('core'));
-        $property22 = new Property('1', [], new Extension('core'));
-        $property23 = new Property('3', [], new Extension('core'));
+        $type2 = new Type('AutoType', '', [], new Extension('auto'));
+        $property21 = new Property('2', [], new Extension('auto'));
+        $property22 = new Property('1', [], new Extension('auto'));
+        $property23 = new Property('3', [], new Extension('auto'));
         $this->subject->addPropertiesToType($type2, $property21, $property22, $property23);
+
+        $type3 = new Type('AnotherAutoType', '', [], new Extension('auto'));
+        $property31 = new Property('z', [], new Extension('auto'));
+        $this->subject->addPropertiesToType($type3, $property31);
 
         $actual = $this->subject->getTerms();
         self::assertCount(2, $actual);
-        self::assertSame('AnotherType', $actual[0]['type']->getId());
-        self::assertSame(['1', '2', '3'], $actual[0]['properties']);
-        self::assertSame('SomeType', $actual[1]['type']->getId());
-        self::assertSame(['a', 'b', 'x'], $actual[1]['properties']);
+        self::assertCount(2, $actual['']);
+        self::assertSame(['1', '2', '3'], $actual['']['AutoType']);
+        self::assertSame(['z'], $actual['']['AnotherAutoType']);
+        self::assertCount(1, $actual['bib']);
+        self::assertSame(['a', 'b', 'x'], $actual['bib']['BibType']);
     }
 }

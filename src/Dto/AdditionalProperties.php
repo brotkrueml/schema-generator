@@ -18,18 +18,24 @@ final class AdditionalProperties
      */
     private array $terms = [];
 
+    public function __construct(private Extension $extension)
+    {
+    }
+
     public function addPropertiesToType(Type $type, Property ...$properties): void
     {
-        if (!isset($this->terms[$type->getId()])) {
-            $this->terms[$type->getId()] = [
-                'type' => $type,
-                'properties' => [],
-            ];
+        $extension = $type->getExtension()->getExtension();
+        if ($this->extension->getExtension() === $extension) {
+            $extension = '';
+        }
+
+        if (!isset($this->terms[$extension][$type->getId()])) {
+            $this->terms[$extension][$type->getId()] = [];
         }
 
         foreach ($properties as $property) {
-            if (!\in_array($property->getId(), $this->terms[$type->getId()]['properties'], true)) {
-                $this->terms[$type->getId()]['properties'][] = $property->getId();
+            if (!\in_array($property->getId(), $this->terms[$extension][$type->getId()], true)) {
+                $this->terms[$extension][$type->getId()][] = $property->getId();
             }
         }
     }
@@ -37,10 +43,13 @@ final class AdditionalProperties
     public function getTerms(): array
     {
         \ksort($this->terms);
-        foreach ($this->terms as &$term) {
-            \sort($term['properties']);
+        foreach ($this->terms as &$types) {
+            \ksort($types);
+            foreach ($types as &$type) {
+                \sort($type);
+            }
         }
 
-        return \array_values($this->terms);
+        return $this->terms;
     }
 }

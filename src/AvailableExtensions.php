@@ -42,4 +42,21 @@ final class AvailableExtensions
 
         return \array_pop($extensions);
     }
+
+    public function getNamespaceByExtension(string $key): string
+    {
+        $extensions = \array_values(\array_filter(
+            $this->extensions,
+            static fn (Extension $extension): bool => $extension->getExtension() === $key
+        ));
+
+        if (\count($extensions) === 0) {
+            throw new \DomainException(
+                \sprintf('Extension "%s" not available', $key),
+                1617384098
+            );
+        }
+
+        return $extensions[0]->getNamespace();
+    }
 }
