@@ -4,10 +4,10 @@ This library is used to generate the [schema.org](https://schema.org/) models
 and view helpers for the TYPO3 extensions
 
 - [schema](https://github.com/brotkrueml/schema)
-- schema_auto
-- schema_bib
-- schema_health
-- schema_pending
+- [schema_auto](https://github.com/brotkrueml/schema-auto)
+- [schema_bib](https://github.com/brotkrueml/schema-bib)
+- [schema_health](https://github.com/brotkrueml/schema-health)
+- [schema_pending](https://github.com/brotkrueml/schema-pending)
 
 ## Usage
 
