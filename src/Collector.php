@@ -22,13 +22,16 @@ final class Collector
     private const TYPE_TYPE = 'rdfs:Class';
 
     private array $schema;
-    /** @var Type[] */
+    /**
+     * @var Type[]
+     */
     private array $types = [];
     private TypeBuilder $typeBuilder;
     private PropertyBuilder $propertyBuilder;
 
-    public function __construct(private string $schemaFilepath)
-    {
+    public function __construct(
+        private string $schemaFilepath,
+    ) {
         $this->readSchema();
         $this->checkSchema();
 
@@ -52,9 +55,9 @@ final class Collector
             throw new \RuntimeException(
                 \sprintf(
                     'Schema file "%s" cannot be read!',
-                    $this->schemaFilepath
+                    $this->schemaFilepath,
                 ),
-                1616324290
+                1616324290,
             );
         }
 
@@ -63,7 +66,7 @@ final class Collector
 
     private function checkSchema(): void
     {
-        if (!isset($this->schema['@context']) || (!isset($this->schema['@graph']))) {
+        if (! isset($this->schema['@context']) || (! isset($this->schema['@graph']))) {
             throw new \RuntimeException('Schema file is not valid!', 1616324975);
         }
     }

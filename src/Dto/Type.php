@@ -20,7 +20,7 @@ final class Type
         private string $id,
         private string $comment,
         private array $subClassOf,
-        private Extension $extension
+        private Extension $extension,
     ) {
     }
 
@@ -56,7 +56,7 @@ final class Type
 
     public function addSubTypeId(string $subTypeId): void
     {
-        if (!\in_array($subTypeId, $this->subTypeIds, true)) {
+        if (! \in_array($subTypeId, $this->subTypeIds, true)) {
             $this->subTypeIds[] = $subTypeId;
         }
     }

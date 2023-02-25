@@ -61,10 +61,10 @@ class TypeBuilderTest extends TestCase
                 'rdfs:comment' => 'The most generic kind of creative work, including books, movies, photographs, software programs, etc.',
                 'rdfs:label' => 'CreativeWork',
                 'rdfs:subClassOf' => [
-                    '@id' => 'schema:Thing'
+                    '@id' => 'schema:Thing',
                 ],
                 'schema:source' => [
-                    '@id' => 'http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews'
+                    '@id' => 'http://www.w3.org/wiki/WebSchemas/SchemaDotOrgSources#source_rNews',
                 ],
             ],
             'expected' => [
@@ -72,7 +72,7 @@ class TypeBuilderTest extends TestCase
                 'comment' => 'The most generic kind of creative work, including books, movies, photographs, software programs, etc.',
                 'subClassOf' => ['Thing'],
                 'isPartOf' => '',
-            ]
+            ],
         ];
 
         yield 'With a localised array as comment' => [
@@ -81,21 +81,21 @@ class TypeBuilderTest extends TestCase
                 '@type' => 'rdfs:Class',
                 'rdfs:comment' => [
                     '@language' => 'en',
-                    '@value' => 'An intangible type to be applied to any archive content, carrying with it a set of properties required to describe archival items and collections.'
+                    '@value' => 'An intangible type to be applied to any archive content, carrying with it a set of properties required to describe archival items and collections.',
                 ],
                 'rdfs:label' => [
                     '@language' => 'en',
-                    '@value' => 'ArchiveComponent'
+                    '@value' => 'ArchiveComponent',
                 ],
                 'rdfs:subClassOf' => [
-                    '@id' => 'schema:CreativeWork'
+                    '@id' => 'schema:CreativeWork',
                 ],
                 'schema:isPartOf' => [
-                    '@id' => 'https://pending.schema.org'
+                    '@id' => 'https://pending.schema.org',
                 ],
                 'schema:source' => [
-                    '@id' => 'https://github.com/schemaorg/schemaorg/issues/1758'
-                ]
+                    '@id' => 'https://github.com/schemaorg/schemaorg/issues/1758',
+                ],
             ],
             'expected' => [
                 'id' => 'ArchiveComponent',

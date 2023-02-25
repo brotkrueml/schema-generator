@@ -45,8 +45,12 @@ class PropertyBuilderTest extends TestCase
                 'rdfs:comment' => 'The date on which the CreativeWork was most recently modified or when the item\'s entry was modified within a DataFeed.',
                 'rdfs:label' => 'dateModified',
                 'schema:domainIncludes' => [
-                    ['@id' => 'schema:DataFeedItem'],
-                    ['@id' => 'schema:CreativeWork'],
+                    [
+                        '@id' => 'schema:DataFeedItem',
+                    ],
+                    [
+                        '@id' => 'schema:CreativeWork',
+                    ],
                 ],
             ],
             'expected' => [
@@ -62,8 +66,12 @@ class PropertyBuilderTest extends TestCase
                 '@type' => 'rdf:Property',
                 'rdfs:comment' => 'Indicates the design and body style of the vehicle (e.g. station wagon, hatchback, etc.).',
                 'rdfs:label' => 'bodyType',
-                'schema:domainIncludes' => ['@id' => 'schema:Vehicle'],
-                'schema:isPartOf' => ['@id' => 'https://auto.schema.org'],
+                'schema:domainIncludes' => [
+                    '@id' => 'schema:Vehicle',
+                ],
+                'schema:isPartOf' => [
+                    '@id' => 'https://auto.schema.org',
+                ],
             ],
             'expected' => [
                 'id' => 'bodyType',

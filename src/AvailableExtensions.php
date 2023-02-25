@@ -30,13 +30,13 @@ final class AvailableExtensions
     {
         $extensions = \array_filter(
             $this->extensions,
-            static fn (Extension $extension): bool => $extension->getUri() === $uri
+            static fn (Extension $extension): bool => $extension->getUri() === $uri,
         );
 
         if (\count($extensions) === 0) {
             throw new \DomainException(
                 \sprintf('Extension uri "%s" not available', $uri),
-                1617384097
+                1617384097,
             );
         }
 
@@ -47,13 +47,13 @@ final class AvailableExtensions
     {
         $extensions = \array_values(\array_filter(
             $this->extensions,
-            static fn (Extension $extension): bool => $extension->getName() === $name
+            static fn (Extension $extension): bool => $extension->getName() === $name,
         ));
 
         if (\count($extensions) === 0) {
             throw new \DomainException(
                 \sprintf('Extension name "%s" is not available', $name),
-                1617384098
+                1617384098,
             );
         }
 

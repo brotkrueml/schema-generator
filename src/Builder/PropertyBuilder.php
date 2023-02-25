@@ -41,7 +41,7 @@ final class PropertyBuilder
         return new Property(
             $this->normaliser->normaliseId($term[Attributes::ID]),
             $domainIncludes,
-            $this->availableExtensions->getExtensionByUri($isPartOf)
+            $this->availableExtensions->getExtensionByUri($isPartOf),
         );
     }
 }

@@ -27,11 +27,17 @@ final class Generator
     private const ROOT_WEBPAGE_TYPE_ID = 'WebPage';
     private const ROOT_WEBPAGEELEMENT_TYPE_ID = 'WebPageElement';
 
-    /** @var array<string, Type> */
+    /**
+     * @var array<string, Type>
+     */
     private array $availableTypes = [];
-    /** @var string[] */
+    /**
+     * @var string[]
+     */
     private array $webPageTypeIds = [];
-    /** @var string[] */
+    /**
+     * @var string[]
+     */
     private array $webPageElementTypeIds = [];
 
     private AdditionalProperties $additionalProperties;
@@ -45,10 +51,7 @@ final class Generator
     private string $typeModelsPath;
 
     /**
-     * @param Writer $writer
      * @param array<string, Type> $types
-     * @param string $extension
-     * @param string $basePath
      */
     public function __construct(
         private Writer $writer,
@@ -77,24 +80,24 @@ final class Generator
 
     private function checkPaths(): void
     {
-        if (!\is_dir($this->modelPath)) {
+        if (! \is_dir($this->modelPath)) {
             throw new \RuntimeException(
                 \sprintf('Path "%s" does not exist', $this->modelPath),
-                1616776865
+                1616776865,
             );
         }
 
-        if (!\is_dir($this->viewHelpersPath)) {
+        if (! \is_dir($this->viewHelpersPath)) {
             throw new \RuntimeException(
                 \sprintf('Path "%s" does not exist', $this->viewHelpersPath),
-                1616776866
+                1616776866,
             );
         }
 
-        if (!\is_dir($this->typeModelsPath)) {
+        if (! \is_dir($this->typeModelsPath)) {
             throw new \RuntimeException(
                 \sprintf('Path "%s" does not exist', $this->typeModelsPath),
-                1616776867
+                1616776867,
             );
         }
     }
@@ -102,25 +105,25 @@ final class Generator
     private function removeOldFiles(): void
     {
         foreach (\glob($this->modelPath . '/*.php') as $filename) {
-            @unlink($filename);
+            @\unlink($filename);
         }
 
         foreach (\glob($this->viewHelpersPath . '/*.php') as $filename) {
-            @unlink($filename);
+            @\unlink($filename);
         }
 
-        @unlink($this->typeModelsPath . '/TypeModels.php');
+        @\unlink($this->typeModelsPath . '/TypeModels.php');
     }
 
     private function identifySpecialTypes(Type $type): array
     {
         $specialTypesForExtension = \array_values(\array_filter(
             $this->collectSpecialTypes($type),
-            fn (Type $type): bool => (string)$type->getExtension() === (string)$this->extension
+            fn (Type $type): bool => (string)$type->getExtension() === (string)$this->extension,
         ));
         $specialTypeIds = \array_map(
             static fn (Type $type): string => $type->getId(),
-            $specialTypesForExtension
+            $specialTypesForExtension,
         );
         \sort($specialTypeIds);
 
@@ -181,13 +184,13 @@ final class Generator
     {
         $properties = \array_values(\array_filter(
             $type->getProperties(),
-            fn (Property $property): bool => \in_array($property->getExtension()->getUri(), ['', $this->extension->getUri()], true)
+            fn (Property $property): bool => \in_array($property->getExtension()->getUri(), ['', $this->extension->getUri()], true),
         ));
 
         foreach ($type->getParentIds() as $parentTypeId) {
             $properties = \array_merge(
                 $properties,
-                $this->collectProperties($this->types[$parentTypeId])
+                $this->collectProperties($this->types[$parentTypeId]),
             );
         }
 
@@ -198,7 +201,7 @@ final class Generator
     {
         $propertyIds = \array_map(
             static fn (Property $property): string => $property->getId(),
-            $properties
+            $properties,
         );
         $propertyIds = \array_unique($propertyIds);
         \sort($propertyIds);
@@ -206,8 +209,8 @@ final class Generator
         $context = [
             'comment' => $this->types[$typeId]->getComment(),
             'className' => $this->types[$typeId]->getId(),
-            'isWebPageType' => \in_array($typeId, $this->webPageTypeIds),
-            'isWebPageElementType' => \in_array($typeId, $this->webPageElementTypeIds),
+            'isWebPageType' => \in_array($typeId, $this->webPageTypeIds, true),
+            'isWebPageElementType' => \in_array($typeId, $this->webPageElementTypeIds, true),
             'namespace' => $this->extension->getNamespace(),
             'properties' => $propertyIds,
         ];
@@ -235,7 +238,7 @@ final class Generator
     {
         $propertiesForExtension = \array_values(\array_filter(
             $properties,
-            fn (Property $property): bool => (string)$property->getExtension() === (string)$this->extension
+            fn (Property $property): bool => (string)$property->getExtension() === (string)$this->extension,
         ));
 
         if (\count($propertiesForExtension) > 0) {

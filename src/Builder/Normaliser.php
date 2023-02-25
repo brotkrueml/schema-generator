@@ -19,13 +19,13 @@ final class Normaliser
             $comment = $comment['@value'];
         }
 
-        if (!\is_string($comment)) {
+        if (! \is_string($comment)) {
             throw new \RuntimeException(
                 \sprintf(
                     'Comment is an array but has no key "@value": "%s"',
-                    \json_encode($comment)
+                    \json_encode($comment),
                 ),
-                1616329438
+                1616329438,
             );
         }
 
@@ -46,8 +46,8 @@ final class Normaliser
             \str_replace(
                 \array_keys($replacements),
                 \array_values($replacements),
-                \strip_tags($comment, ['<a>'])
-            )
+                \strip_tags($comment, ['<a>']),
+            ),
         );
 
         $commentLines = \array_filter($commentLines, static function (string $line): bool {

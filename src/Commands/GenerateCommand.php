@@ -27,7 +27,7 @@ final class GenerateCommand extends Command
         'auto',
         'bib',
         'health',
-        'pending'
+        'pending',
     ];
     private const PATH_SCHEMA = __DIR__ . '/../../schema/schemaorg-current-https.jsonld';
 
@@ -50,7 +50,7 @@ final class GenerateCommand extends Command
             ->addArgument(
                 'extension',
                 InputArgument::REQUIRED,
-                \sprintf('The extension (%s)', \implode(', ', self::EXTENSIONS))
+                \sprintf('The extension (%s)', \implode(', ', self::EXTENSIONS)),
             )
             ->addArgument('basePath', InputArgument::REQUIRED, 'The base path (e.g. /path/to/schema-ext)');
     }
@@ -75,17 +75,17 @@ final class GenerateCommand extends Command
         $classConstant = \sprintf(
             '%s::%s',
             Extensions::class,
-            \strtoupper($extension)
+            \strtoupper($extension),
         );
 
-        if (!\defined($classConstant)) {
+        if (! \defined($classConstant)) {
             throw new \InvalidArgumentException(
                 \sprintf(
                     'Extension "%s" is not available, possible extensions: %s!',
                     $extension,
-                    \implode(', ', self::EXTENSIONS)
+                    \implode(', ', self::EXTENSIONS),
                 ),
-                1616347918
+                1616347918,
             );
         }
     }
@@ -98,7 +98,7 @@ final class GenerateCommand extends Command
 
         throw new \InvalidArgumentException(
             \sprintf('Base Path "%s" is not a directory!', $basePath),
-            1616347919
+            1616347919,
         );
     }
 }

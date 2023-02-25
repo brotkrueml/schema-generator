@@ -48,7 +48,7 @@ final class TypeBuilder
             $id,
             $this->normaliser->normaliseComment($term[Attributes::COMMENT]),
             $subClassOf,
-            $this->availableExtensions->getExtensionByUri($isPartOf)
+            $this->availableExtensions->getExtensionByUri($isPartOf),
         );
     }
 }

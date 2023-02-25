@@ -94,14 +94,20 @@ class NormaliserTest extends TestCase
     public function dataProviderForNormaliseIdFromClasses(): \Generator
     {
         yield 'with one id given' => [
-            'classes' => ['@id' => 'schema:LocalBusiness'],
+            'classes' => [
+                '@id' => 'schema:LocalBusiness',
+            ],
             'expected' => ['LocalBusiness'],
         ];
 
         yield 'with multiple ids given' => [
             'classes' => [
-                ['@id' => 'schema:DataFeedItem'],
-                ['@id' => 'schema:CreativeWork'],
+                [
+                    '@id' => 'schema:DataFeedItem',
+                ],
+                [
+                    '@id' => 'schema:CreativeWork',
+                ],
             ],
             'expected' => ['DataFeedItem', 'CreativeWork'],
         ];

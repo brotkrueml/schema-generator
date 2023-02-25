@@ -27,7 +27,7 @@ class TypeTest extends TestCase
             'SomeId',
             'some comment',
             ['SomeSubId'],
-            new Extension('bib')
+            new Extension('bib'),
         );
 
         self::assertSame('SomeId', $subject->getId());

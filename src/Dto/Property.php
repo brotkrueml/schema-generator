@@ -16,7 +16,7 @@ final class Property
     public function __construct(
         private string $id,
         private array $types,
-        private Extension $extension
+        private Extension $extension,
     ) {
     }
 

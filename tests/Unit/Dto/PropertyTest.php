@@ -28,7 +28,7 @@ class PropertyTest extends TestCase
         $subject = new Property(
             'SomeId',
             $types,
-            new Extension('auto')
+            new Extension('auto'),
         );
 
         self::assertSame('SomeId', $subject->getId());

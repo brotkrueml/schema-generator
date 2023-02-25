@@ -19,21 +19,22 @@ final class Extension implements \Stringable
     private string $uri;
     private string $namespace;
 
-    public function __construct(private string $name)
-    {
+    public function __construct(
+        private string $name,
+    ) {
         $extensionConstant = Extensions::class . '::' . \strtoupper($name);
-        if (!\defined($extensionConstant)) {
+        if (! \defined($extensionConstant)) {
             throw new \InvalidArgumentException(
                 \sprintf('Extension "%s" is not defined', $name),
-                1617382155
+                1617382155,
             );
         }
 
         $namespaceConstant = Namespaces::class . '::' . \strtoupper($name);
-        if (!\defined($namespaceConstant)) {
+        if (! \defined($namespaceConstant)) {
             throw new \InvalidArgumentException(
                 \sprintf('Namespace for extension "%s" is not defined', $name),
-                1617382156
+                1617382156,
             );
         }
 
