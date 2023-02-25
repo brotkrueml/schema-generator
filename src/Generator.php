@@ -48,7 +48,6 @@ final class Generator
     private string $additionalPropertiesPath;
     private string $modelPath;
     private string $viewHelpersPath;
-    private string $typeModelsPath;
 
     /**
      * @param array<string, Type> $types
@@ -74,7 +73,6 @@ final class Generator
     {
         $this->additionalPropertiesPath = $this->basePath . '/' . self::PATH_ADDITIONAL_PROPERTIES;
         $this->modelPath = $this->basePath . '/' . self::PATH_MODEL;
-        $this->typeModelsPath = $this->basePath . '/' . self::PATH_TYPE_MODELS;
         $this->viewHelpersPath = $this->basePath . '/' . self::PATH_VIEW_HELPERS;
     }
 
@@ -93,13 +91,6 @@ final class Generator
                 1616776866,
             );
         }
-
-        if (! \is_dir($this->typeModelsPath)) {
-            throw new \RuntimeException(
-                \sprintf('Path "%s" does not exist', $this->typeModelsPath),
-                1616776867,
-            );
-        }
     }
 
     private function removeOldFiles(): void
@@ -111,8 +102,6 @@ final class Generator
         foreach (\glob($this->viewHelpersPath . '/*.php') as $filename) {
             @\unlink($filename);
         }
-
-        @\unlink($this->typeModelsPath . '/TypeModels.php');
     }
 
     private function identifySpecialTypes(Type $type): array
@@ -147,7 +136,6 @@ final class Generator
     {
         $this->generateClasses(self::ROOT_TYPE_ID);
         $this->registerAdditionalProperties();
-        $this->generateAvailableTypes();
     }
 
     private function generateClasses(string $typeId): void
@@ -213,6 +201,7 @@ final class Generator
             'isWebPageElementType' => \in_array($typeId, $this->webPageElementTypeIds, true),
             'namespace' => $this->extension->getNamespace(),
             'properties' => $propertyIds,
+            'type' => $typeId,
         ];
 
         $this->writer->write($this->modelPath, Writer::TEMPLATE_MODEL, $context);
@@ -259,18 +248,5 @@ final class Generator
         ];
 
         $this->writer->write($this->additionalPropertiesPath, Writer::TEMPLATE_ADDITIONAL_PROPERTIES, $context);
-    }
-
-    private function generateAvailableTypes(): void
-    {
-        $types = $this->availableTypes;
-        \sort($types);
-
-        $context = [
-            'namespace' => $this->extension->getNamespace(),
-            'types' => $types,
-        ];
-
-        $this->writer->write($this->typeModelsPath, Writer::TEMPLATE_TYPE_MODELS, $context);
     }
 }

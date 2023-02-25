@@ -17,7 +17,6 @@ final class Writer
 {
     public const TEMPLATE_ADDITIONAL_PROPERTIES = 'RegisterAdditionalProperties';
     public const TEMPLATE_MODEL = 'Model';
-    public const TEMPLATE_TYPE_MODELS = 'TypeModels';
     public const TEMPLATE_VIEWHELPER = 'ViewHelper';
 
     public function __construct(

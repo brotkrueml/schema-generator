@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace {{ namespace }}Model\Type;
 
+use Brotkrueml\Schema\Attributes\Type;
 use Brotkrueml\Schema\Core\Model\AbstractType;
 {% if isWebPageType %}
     use Brotkrueml\Schema\Core\Model\WebPageTypeInterface;
@@ -14,6 +15,7 @@ use Brotkrueml\Schema\Core\Model\AbstractType;
 /**
  * {{ comment|raw }}
  */
+#[Type('{{ type }}')]
 final class {{ className }} extends AbstractType
 {% if isWebPageType %}
     implements WebPageTypeInterface
