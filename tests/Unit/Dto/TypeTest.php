@@ -14,13 +14,12 @@ namespace Brotkrueml\SchemaGenerator\Tests\Unit\Dto;
 use Brotkrueml\SchemaGenerator\Dto\Extension;
 use Brotkrueml\SchemaGenerator\Dto\Property;
 use Brotkrueml\SchemaGenerator\Dto\Type;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class TypeTest extends TestCase
+final class TypeTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function gettersImplementedCorrectly(): void
     {
         $subject = new Type(
@@ -36,9 +35,7 @@ class TypeTest extends TestCase
         self::assertSame('bib', $subject->getExtension()->getName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addPropertyAndGetProperties(): void
     {
         $subject = new Type('SomeId', 'some comment', [], new Extension('core'));

@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace Brotkrueml\SchemaGenerator\Tests\Unit\Builder;
 
 use Brotkrueml\SchemaGenerator\Builder\TypeBuilder;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class TypeBuilderTest extends TestCase
+final class TypeBuilderTest extends TestCase
 {
     private TypeBuilder $subject;
 
@@ -23,10 +25,8 @@ class TypeBuilderTest extends TestCase
         $this->subject = new TypeBuilder();
     }
 
-    /**
-     * @test
-     * @dataProvider dataProvider
-     */
+    #[Test]
+    #[DataProvider('dataProvider')]
     public function termIsConvertedCorrectlyToTypeModel(array $term, array $expected): void
     {
         $actual = $this->subject->build($term);
@@ -37,7 +37,7 @@ class TypeBuilderTest extends TestCase
         self::assertSame($expected['isPartOf'], $actual->getExtension()->getUri());
     }
 
-    public function dataProvider(): \Generator
+    public static function dataProvider(): \Generator
     {
         yield 'With root element' => [
             'term' => [

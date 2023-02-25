@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace Brotkrueml\SchemaGenerator\Tests\Unit\Builder;
 
 use Brotkrueml\SchemaGenerator\Builder\Normaliser;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class NormaliserTest extends TestCase
+final class NormaliserTest extends TestCase
 {
     private Normaliser $subject;
 
@@ -23,10 +25,8 @@ class NormaliserTest extends TestCase
         $this->subject = new Normaliser();
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForNormaliseComment
-     */
+    #[Test]
+    #[DataProvider('dataProviderForNormaliseComment')]
     public function normaliseComment(string|array $comment, string $expected): void
     {
         $actual = $this->subject->normaliseComment($comment);
@@ -34,7 +34,7 @@ class NormaliserTest extends TestCase
         self::assertSame($expected, $actual);
     }
 
-    public function dataProviderForNormaliseComment(): \Generator
+    public static function dataProviderForNormaliseComment(): \Generator
     {
         yield 'as Array' => [
             'comment' => [
@@ -80,10 +80,8 @@ class NormaliserTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForNormaliseIdFromClasses
-     */
+    #[Test]
+    #[DataProvider('dataProviderForNormaliseIdFromClasses')]
     public function normaliseIdFromClasses(array $classes, array $expected): void
     {
         $actual = $this->subject->normaliseIdFromClasses($classes);
@@ -91,7 +89,7 @@ class NormaliserTest extends TestCase
         self::assertSame($expected, $actual);
     }
 
-    public function dataProviderForNormaliseIdFromClasses(): \Generator
+    public static function dataProviderForNormaliseIdFromClasses(): \Generator
     {
         yield 'with one id given' => [
             'classes' => [
@@ -113,9 +111,7 @@ class NormaliserTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function normaliseId(): void
     {
         $actual = $this->subject->normaliseId('schema:Person');

@@ -14,13 +14,12 @@ namespace Brotkrueml\SchemaGenerator\Tests\Unit\Dto;
 use Brotkrueml\SchemaGenerator\Dto\Extension;
 use Brotkrueml\SchemaGenerator\Dto\Property;
 use Brotkrueml\SchemaGenerator\Dto\Type;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class PropertyTest extends TestCase
+final class PropertyTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function gettersImplementedCorrectly(): void
     {
         $types = [new Type('SomeTypeId', '', [], new Extension('core'))];

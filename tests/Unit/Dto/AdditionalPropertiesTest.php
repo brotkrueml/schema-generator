@@ -15,9 +15,10 @@ use Brotkrueml\SchemaGenerator\Dto\AdditionalProperties;
 use Brotkrueml\SchemaGenerator\Dto\Extension;
 use Brotkrueml\SchemaGenerator\Dto\Property;
 use Brotkrueml\SchemaGenerator\Dto\Type;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class AdditionalPropertiesTest extends TestCase
+final class AdditionalPropertiesTest extends TestCase
 {
     private AdditionalProperties $subject;
 
@@ -26,17 +27,13 @@ class AdditionalPropertiesTest extends TestCase
         $this->subject = new AdditionalProperties(new Extension('auto'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function emptyTermsReturnEmptyArray(): void
     {
         self::assertSame([], $this->subject->getTerms());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function typesAndPropertiesAreReturnedCorrectly(): void
     {
         $type1 = new Type('BibType', '', [], new Extension('bib'));

@@ -14,14 +14,14 @@ namespace Brotkrueml\SchemaGenerator\Tests\Unit\Dto;
 use Brotkrueml\SchemaGenerator\Dto\Extension;
 use Brotkrueml\SchemaGenerator\Enumerations\Extensions;
 use Brotkrueml\SchemaGenerator\Enumerations\Namespaces;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class ExtensionTest extends TestCase
+final class ExtensionTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider dataProviderForExtensions
-     */
+    #[Test]
+    #[DataProvider('dataProviderForExtensions')]
     public function objectIsInitialisedCorrectly(string $name, string $uri, string $namespace): void
     {
         $subject = new Extension($name);
@@ -32,7 +32,7 @@ class ExtensionTest extends TestCase
         self::assertSame($name, (string)$subject);
     }
 
-    public function dataProviderForExtensions(): \Generator
+    public static function dataProviderForExtensions(): \Generator
     {
         yield 'auto' => [
             'name' => 'auto',
@@ -65,9 +65,7 @@ class ExtensionTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function exceptionIsThrownOnInvalidExtension(): void
     {
         $this->expectException(\InvalidArgumentException::class);

@@ -35,7 +35,7 @@ class AvailableExtensionsTest extends TestCase
         self::assertSame($expectedName, $actual->getName());
     }
 
-    public function dataProviderForGetExtensionByUri(): \Generator
+    public static function dataProviderForGetExtensionByUri(): \Generator
     {
         yield 'auto' => [
             'uri' => 'https://auto.schema.org',
@@ -85,7 +85,7 @@ class AvailableExtensionsTest extends TestCase
         self::assertSame($expectedNamespace, $actual);
     }
 
-    public function dataProviderForGetNamespaceByName(): \Generator
+    public static function dataProviderForGetNamespaceByName(): \Generator
     {
         yield 'auto' => [
             'name' => 'auto',

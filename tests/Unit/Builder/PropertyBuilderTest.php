@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace Brotkrueml\SchemaGenerator\Tests\Unit\Builder;
 
 use Brotkrueml\SchemaGenerator\Builder\PropertyBuilder;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class PropertyBuilderTest extends TestCase
+final class PropertyBuilderTest extends TestCase
 {
     private PropertyBuilder $subject;
 
@@ -23,10 +25,8 @@ class PropertyBuilderTest extends TestCase
         $this->subject = new PropertyBuilder();
     }
 
-    /**
-     * @test
-     * @dataProvider dataProvider
-     */
+    #[Test]
+    #[DataProvider('dataProvider')]
     public function termIsConvertedCorrectlyToTypeModel(array $term, array $expected): void
     {
         $actual = $this->subject->build($term);
@@ -36,7 +36,7 @@ class PropertyBuilderTest extends TestCase
         self::assertSame($expected['extension'], $actual->getExtension()->getName());
     }
 
-    public function dataProvider(): \Generator
+    public static function dataProvider(): \Generator
     {
         yield 'in core extension' => [
             'term' => [
