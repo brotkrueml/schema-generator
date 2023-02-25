@@ -14,12 +14,12 @@
         "ext-ctype": "*",
         "ext-intl": "*",
         "ext-mbstring": "*",
-		"symfony/console": "^5.2",
-		"twig/twig": "^3.3"
+		"symfony/console": "^6.2",
+		"twig/twig": "^3.5"
 	},
 	"require-dev": {
         "brotkrueml/coding-standards": "~4.0.0",
-		"phpunit/phpunit": "^9.5"
+		"phpunit/phpunit": "^9.6"
 	},
     "replace": {
         "symfony/polyfill-ctype": "*",
