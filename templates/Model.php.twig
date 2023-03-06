@@ -8,9 +8,6 @@ use Brotkrueml\Schema\Core\Model\AbstractType;
 {% if isWebPageType %}
     use Brotkrueml\Schema\Core\Model\WebPageTypeInterface;
 {% endif %}
-{% if isWebPageElementType %}
-    use Brotkrueml\Schema\Core\Model\WebPageElementTypeInterface;
-{% endif %}
 
 /**
  * {{ comment|raw }}
@@ -19,9 +16,6 @@ use Brotkrueml\Schema\Core\Model\AbstractType;
 final class {{ className }} extends AbstractType
 {% if isWebPageType %}
     implements WebPageTypeInterface
-{% endif %}
-{% if isWebPageElementType %}
-    implements WebPageElementTypeInterface
 {% endif %}
 {
     protected static array $propertyNames = [

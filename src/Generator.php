@@ -20,12 +20,10 @@ final class Generator
 {
     private const PATH_ADDITIONAL_PROPERTIES = 'Classes/EventListener';
     private const PATH_MODEL = 'Classes/Model/Type';
-    private const PATH_TYPE_MODELS = 'Configuration/TxSchema';
     private const PATH_VIEW_HELPERS = 'Classes/ViewHelpers/Type';
 
     private const ROOT_TYPE_ID = 'Thing';
     private const ROOT_WEBPAGE_TYPE_ID = 'WebPage';
-    private const ROOT_WEBPAGEELEMENT_TYPE_ID = 'WebPageElement';
 
     /**
      * @var array<string, Type>
@@ -35,10 +33,6 @@ final class Generator
      * @var string[]
      */
     private array $webPageTypeIds = [];
-    /**
-     * @var string[]
-     */
-    private array $webPageElementTypeIds = [];
 
     private AdditionalProperties $additionalProperties;
 
@@ -66,7 +60,6 @@ final class Generator
         $this->availableExtensions = new AvailableExtensions();
         $this->additionalProperties = new AdditionalProperties($this->extension);
         $this->webPageTypeIds = $this->identifySpecialTypes($this->types[self::ROOT_WEBPAGE_TYPE_ID]);
-        $this->webPageElementTypeIds = $this->identifySpecialTypes($this->types[self::ROOT_WEBPAGEELEMENT_TYPE_ID]);
     }
 
     private function definePaths(): void
@@ -198,7 +191,6 @@ final class Generator
             'comment' => $this->types[$typeId]->getComment(),
             'className' => $this->types[$typeId]->getId(),
             'isWebPageType' => \in_array($typeId, $this->webPageTypeIds, true),
-            'isWebPageElementType' => \in_array($typeId, $this->webPageElementTypeIds, true),
             'namespace' => $this->extension->getNamespace(),
             'properties' => $propertyIds,
             'type' => $typeId,
