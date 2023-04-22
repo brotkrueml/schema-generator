@@ -18,6 +18,8 @@ use Brotkrueml\SchemaGenerator\Dto\Type;
 
 final class Generator
 {
+    private const CONFIG_PATH_MANUALS = __DIR__ . '/../config/Manuals.php';
+
     private const PATH_ADDITIONAL_PROPERTIES = 'Classes/EventListener';
     private const PATH_MODEL = 'Classes/Model/Type';
     private const PATH_VIEW_HELPERS = 'Classes/ViewHelpers/Type';
@@ -33,6 +35,11 @@ final class Generator
      * @var string[]
      */
     private array $webPageTypeIds = [];
+
+    /**
+     * @var array<string, array>
+     */
+    private array $manuals = [];
 
     private AdditionalProperties $additionalProperties;
 
@@ -60,6 +67,7 @@ final class Generator
         $this->availableExtensions = new AvailableExtensions();
         $this->additionalProperties = new AdditionalProperties($this->extension);
         $this->webPageTypeIds = $this->identifySpecialTypes($this->types[self::ROOT_WEBPAGE_TYPE_ID]);
+        $this->manuals = require self::CONFIG_PATH_MANUALS;
     }
 
     private function definePaths(): void
@@ -189,6 +197,7 @@ final class Generator
 
         $context = [
             'comment' => $this->types[$typeId]->getComment(),
+            'manuals' => $this->manuals[$typeId] ?? [],
             'className' => $this->types[$typeId]->getId(),
             'isWebPageType' => \in_array($typeId, $this->webPageTypeIds, true),
             'namespace' => $this->extension->getNamespace(),

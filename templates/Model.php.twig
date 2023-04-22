@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace {{ namespace }}Model\Type;
 
+{% if manuals %}
+    use Brotkrueml\Schema\Attributes\Manual;
+    use Brotkrueml\Schema\Manual\Publisher;
+{% endif %}
 use Brotkrueml\Schema\Attributes\Type;
 use Brotkrueml\Schema\Core\Model\AbstractType;
 {% if isWebPageType %}
@@ -13,6 +17,9 @@ use Brotkrueml\Schema\Core\Model\AbstractType;
  * {{ comment|raw }}
  */
 #[Type('{{ type }}')]
+{% for manual in manuals %}
+    #[Manual(Publisher::{{ manual.publisher }}, '{{ manual.link }}')]
+{% endfor %}
 final class {{ className }} extends AbstractType
 {% if isWebPageType %}
     implements WebPageTypeInterface
