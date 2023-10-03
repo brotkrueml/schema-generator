@@ -30,13 +30,13 @@ final class AdditionalProperties
             $extensionName = '';
         }
 
-        if (! isset($this->terms[$extensionName][$type->getId()])) {
-            $this->terms[$extensionName][$type->getId()] = [];
+        if (! isset($this->terms[$extensionName][$type->getClassName()])) {
+            $this->terms[$extensionName][$type->getClassName()] = [];
         }
 
         foreach ($properties as $property) {
-            if (! \in_array($property->getId(), $this->terms[$extensionName][$type->getId()], true)) {
-                $this->terms[$extensionName][$type->getId()][] = $property->getId();
+            if (! \in_array($property->getId(), $this->terms[$extensionName][$type->getClassName()], true)) {
+                $this->terms[$extensionName][$type->getClassName()][] = $property->getId();
             }
         }
     }
