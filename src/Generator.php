@@ -18,6 +18,19 @@ use Brotkrueml\SchemaGenerator\Dto\Type;
 
 final class Generator
 {
+    private const NUMBER_TO_STRING = [
+        0 => 'Zero',
+        1 => 'One',
+        2 => 'Two',
+        3 => 'Three',
+        4 => 'Four',
+        5 => 'Five',
+        6 => 'Six',
+        7 => 'Seven',
+        8 => 'Eight',
+        9 => 'Nine',
+    ];
+
     private const CONFIG_PATH_MANUALS = __DIR__ . '/../config/Manuals.php';
 
     private const PATH_ADDITIONAL_PROPERTIES = 'Classes/EventListener';
@@ -210,10 +223,17 @@ final class Generator
 
     private function generateViewHelperClass(string $typeId): void
     {
+        $className = $this->types[$typeId]->getClassName() . 'ViewHelper';
+        if (\preg_match('/^_([0-9])(.*)$/', $className, $matches)) {
+            // Special case: class must not begin with an underscore and a number (view helper is then not recognised)
+            $className = self::NUMBER_TO_STRING[$matches[1]] . $matches[2];
+        }
+
         $context = [
             'comment' => $this->types[$typeId]->getComment(),
-            'className' => $this->types[$typeId]->getClassName() . 'ViewHelper',
+            'className' => $className,
             'namespace' => $this->extension->getNamespace(),
+            'type' => $typeId,
         ];
 
         $this->writer->write($this->viewHelpersPath, Writer::TEMPLATE_VIEWHELPER, $context);
