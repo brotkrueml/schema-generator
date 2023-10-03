@@ -19,6 +19,7 @@ final class Type
     public function __construct(
         private string $id,
         private string $comment,
+        private string $className,
         private array $subClassOf,
         private Extension $extension,
     ) {
@@ -32,6 +33,11 @@ final class Type
     public function getComment(): string
     {
         return $this->comment;
+    }
+
+    public function getClassName(): string
+    {
+        return $this->className;
     }
 
     public function getParentIds(): array

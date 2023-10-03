@@ -22,7 +22,7 @@ final class PropertyTest extends TestCase
     #[Test]
     public function gettersImplementedCorrectly(): void
     {
-        $types = [new Type('SomeTypeId', '', [], new Extension('core'))];
+        $types = [new Type('SomeTypeId', '', 'SomeTypeId', [], new Extension('core'))];
 
         $subject = new Property(
             'SomeId',

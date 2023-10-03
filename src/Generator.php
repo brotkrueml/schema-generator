@@ -198,7 +198,7 @@ final class Generator
         $context = [
             'comment' => $this->types[$typeId]->getComment(),
             'manuals' => $this->manuals[$typeId] ?? [],
-            'className' => $this->types[$typeId]->getId(),
+            'className' => $this->types[$typeId]->getClassName(),
             'isWebPageType' => \in_array($typeId, $this->webPageTypeIds, true),
             'namespace' => $this->extension->getNamespace(),
             'properties' => $propertyIds,
@@ -212,7 +212,7 @@ final class Generator
     {
         $context = [
             'comment' => $this->types[$typeId]->getComment(),
-            'className' => $this->types[$typeId]->getId() . 'ViewHelper',
+            'className' => $this->types[$typeId]->getClassName() . 'ViewHelper',
             'namespace' => $this->extension->getNamespace(),
         ];
 

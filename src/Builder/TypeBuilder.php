@@ -38,15 +38,18 @@ final class TypeBuilder
             $isPartOf = $term[Attributes::IS_PART_OF][Attributes::ID];
         }
 
-        // Special case: class must not begin with a number
         $id = $this->normaliser->normaliseId($term[Attributes::ID]);
-        if (\preg_match('/^[0-9].*/', $id, $matches)) {
-            $id = '_' . $matches[0];
+
+        $className = $id;
+        if (\preg_match('/^[0-9].*/', $className, $matches)) {
+            // Special case: class must not begin with a number
+            $className = '_' . $matches[0];
         }
 
         return new Type(
             $id,
             $this->normaliser->normaliseComment($term[Attributes::COMMENT]),
+            $className,
             $subClassOf,
             $this->availableExtensions->getExtensionByUri($isPartOf),
         );

@@ -25,6 +25,7 @@ final class TypeTest extends TestCase
         $subject = new Type(
             'SomeId',
             'some comment',
+            'SomeId',
             ['SomeSubId'],
             new Extension('bib'),
         );
@@ -38,7 +39,7 @@ final class TypeTest extends TestCase
     #[Test]
     public function addPropertyAndGetProperties(): void
     {
-        $subject = new Type('SomeId', 'some comment', [], new Extension('core'));
+        $subject = new Type('SomeId', 'some comment', 'SomeId', [], new Extension('core'));
         $property1 = new Property('someProperty', ['SomeId'], new Extension('auto'));
         $subject->addProperty($property1);
 

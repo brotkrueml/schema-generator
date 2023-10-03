@@ -36,19 +36,19 @@ final class AdditionalPropertiesTest extends TestCase
     #[Test]
     public function typesAndPropertiesAreReturnedCorrectly(): void
     {
-        $type1 = new Type('BibType', '', [], new Extension('bib'));
+        $type1 = new Type('BibType', '', 'BibType', [], new Extension('bib'));
         $property11 = new Property('x', [], new Extension('bib'));
         $property12 = new Property('a', [], new Extension('bib'));
         $property13 = new Property('b', [], new Extension('bib'));
         $this->subject->addPropertiesToType($type1, $property11, $property12, $property13);
 
-        $type2 = new Type('AutoType', '', [], new Extension('auto'));
+        $type2 = new Type('AutoType', '', 'AutoType', [], new Extension('auto'));
         $property21 = new Property('2', [], new Extension('auto'));
         $property22 = new Property('1', [], new Extension('auto'));
         $property23 = new Property('3', [], new Extension('auto'));
         $this->subject->addPropertiesToType($type2, $property21, $property22, $property23);
 
-        $type3 = new Type('AnotherAutoType', '', [], new Extension('auto'));
+        $type3 = new Type('AnotherAutoType', '', 'AnotherAutoType', [], new Extension('auto'));
         $property31 = new Property('z', [], new Extension('auto'));
         $this->subject->addPropertiesToType($type3, $property31);
 
