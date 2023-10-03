@@ -39,8 +39,5 @@
 	},
 	"config": {
 		"sort-packages": true
-	},
-	"scripts": {
-		"fix-cs": "vendor/bin/php-cs-fixer fix"
 	}
 }
