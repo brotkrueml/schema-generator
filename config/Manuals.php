@@ -27,10 +27,22 @@ return [
             'link' => 'https://developers.google.com/search/docs/data-types/breadcrumb',
         ],
     ],
+    'Car' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/vehicle-listing',
+        ],
+    ],
     'ClaimReview' => [
         [
             'publisher' => 'Google',
             'link' => 'https://developers.google.com/search/docs/data-types/factcheck',
+        ],
+    ],
+    'Clip' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/learning-video',
         ],
     ],
     'Course' => [
@@ -43,6 +55,18 @@ return [
         [
             'publisher' => 'Yandex',
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/essay.html',
+        ],
+    ],
+    'DataCatalog' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/data-types/dataset',
+        ],
+    ],
+    'DataDownload' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/data-types/dataset',
         ],
     ],
     'Dataset' => [
@@ -93,6 +117,24 @@ return [
             'link' => 'https://developers.google.com/search/docs/data-types/job-posting',
         ],
     ],
+    'LearningResource' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/learning-video',
+        ],
+    ],
+    'LocalBusiness' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/local-business',
+        ],
+    ],
+    'MathSolver' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/math-solvers',
+        ],
+    ],
     'MobileApplication' => [
         [
             'publisher' => 'Google',
@@ -129,7 +171,23 @@ return [
             'link' => 'https://developers.google.com/search/docs/data-types/paywalled-content',
         ],
     ],
+    'Occupation' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/estimated-salary',
+        ],
+    ],
     'Organization' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/logo',
+        ],
+        [
+            'publisher' => 'Yandex',
+            'link' => 'https://yandex.com/support/webmaster/supported-schemas/address-organization.html',
+        ],
+    ],
+    'Place' => [
         [
             'publisher' => 'Yandex',
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/address-organization.html',
@@ -152,6 +210,10 @@ return [
         ],
     ],
     'Question' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/education-qa',
+        ],
         [
             'publisher' => 'Yandex',
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/questions.html',
@@ -205,6 +267,12 @@ return [
             'link' => 'https://yandex.com/support/video/partners/schema-org.html',
         ],
     ],
+    'VirtualLocation' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/home-activities',
+        ],
+    ],
     'WebApplication' => [
         [
             'publisher' => 'Google',
@@ -213,6 +281,12 @@ return [
         [
             'publisher' => 'Yandex',
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/software.html',
+        ],
+    ],
+    'WebSite' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox',
         ],
     ],
 ];
