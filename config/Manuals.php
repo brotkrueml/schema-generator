@@ -45,6 +45,12 @@ return [
             'link' => 'https://developers.google.com/search/docs/appearance/structured-data/learning-video',
         ],
     ],
+    'ContactPoint' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/logo',
+        ],
+    ],
     'Course' => [
         [
             'publisher' => 'Google',
@@ -188,6 +194,16 @@ return [
         ],
     ],
     'Place' => [
+        [
+            'publisher' => 'Yandex',
+            'link' => 'https://yandex.com/support/webmaster/supported-schemas/address-organization.html',
+        ],
+    ],
+    'PostalAddress' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/logo',
+        ],
         [
             'publisher' => 'Yandex',
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/address-organization.html',
