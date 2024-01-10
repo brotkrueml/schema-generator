@@ -57,6 +57,12 @@ return [
             'link' => 'https://developers.google.com/search/docs/appearance/structured-data/course',
         ],
     ],
+    'CourseInstance' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/course-info',
+        ],
+    ],
     'CreativeWork' => [
         [
             'publisher' => 'Yandex',
@@ -213,6 +219,12 @@ return [
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/goods-prices.html',
         ],
     ],
+    'ProfilePage' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/profile-page',
+        ],
+    ],
     'QAPage' => [
         [
             'publisher' => 'Google',
@@ -259,6 +271,12 @@ return [
         [
             'publisher' => 'Yandex',
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/software.html',
+        ],
+    ],
+    'VacationRental' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/vacation-rental',
         ],
     ],
     'VideoGame' => [
