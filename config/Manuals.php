@@ -6,25 +6,25 @@ return [
     'Article' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/article',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/article',
         ],
     ],
     'BlogPosting' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/article',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/article',
         ],
     ],
     'Book' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/book',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/book',
         ],
     ],
     'BreadcrumbList' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/breadcrumb',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/breadcrumb',
         ],
     ],
     'Car' => [
@@ -36,7 +36,7 @@ return [
     'ClaimReview' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/factcheck',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/factcheck',
         ],
     ],
     'Clip' => [
@@ -54,7 +54,7 @@ return [
     'Course' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/course',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/course',
         ],
     ],
     'CreativeWork' => [
@@ -66,19 +66,19 @@ return [
     'DataCatalog' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/dataset',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/dataset',
         ],
     ],
     'DataDownload' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/dataset',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/dataset',
         ],
     ],
     'Dataset' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/dataset',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/dataset',
         ],
     ],
     'DiscussionForumPosting' => [
@@ -96,19 +96,19 @@ return [
     'EmployerAggregateRating' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/employer-rating',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/employer-rating',
         ],
     ],
     'Event' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/event',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/event',
         ],
     ],
     'FAQPage' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/faqpage',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/faqpage',
         ],
     ],
     'HowTo' => [
@@ -120,13 +120,13 @@ return [
     'ImageObject' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/image-license-metadata',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata',
         ],
     ],
     'JobPosting' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/job-posting',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/job-posting',
         ],
     ],
     'LearningResource' => [
@@ -150,7 +150,7 @@ return [
     'MobileApplication' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/software-app',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/software-app',
         ],
         [
             'publisher' => 'Yandex',
@@ -160,13 +160,13 @@ return [
     'MonetaryAmountDistribution' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/estimated-salary',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/estimated-salary',
         ],
     ],
     'Movie' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/movie',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/movie',
         ],
         [
             'publisher' => 'Yandex',
@@ -176,7 +176,7 @@ return [
     'NewsArticle' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/article',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/article',
         ],
         [
             'publisher' => 'Google',
@@ -218,7 +218,7 @@ return [
     'Product' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/product',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product',
         ],
         [
             'publisher' => 'Yandex',
@@ -228,7 +228,7 @@ return [
     'QAPage' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/qapage',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/qapage',
         ],
     ],
     'Question' => [
@@ -244,13 +244,13 @@ return [
     'Quiz' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/advanced/structured-data/practice-problems',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/practice-problems',
         ],
     ],
     'Recipe' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/recipe',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/recipe',
         ],
         [
             'publisher' => 'Yandex',
@@ -260,13 +260,13 @@ return [
     'Review' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/review-snippet',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/review-snippet',
         ],
     ],
     'SoftwareApplication' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/software-app',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/software-app',
         ],
         [
             'publisher' => 'Yandex',
@@ -282,7 +282,7 @@ return [
     'VideoObject' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/video',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/video',
         ],
         [
             'publisher' => 'Yandex',
@@ -298,7 +298,7 @@ return [
     'WebApplication' => [
         [
             'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/software-app',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/software-app',
         ],
         [
             'publisher' => 'Yandex',
