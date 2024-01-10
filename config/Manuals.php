@@ -81,6 +81,12 @@ return [
             'link' => 'https://developers.google.com/search/docs/data-types/dataset',
         ],
     ],
+    'DiscussionForumPosting' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum',
+        ],
+    ],
     'EducationalOccupationalProgram' => [
         [
             'publisher' => 'Google',
