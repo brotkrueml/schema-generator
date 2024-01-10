@@ -87,12 +87,6 @@ return [
             'link' => 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum',
         ],
     ],
-    'EducationalOccupationalProgram' => [
-        [
-            'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/job-training',
-        ],
-    ],
     'EmployerAggregateRating' => [
         [
             'publisher' => 'Google',
@@ -109,12 +103,6 @@ return [
         [
             'publisher' => 'Google',
             'link' => 'https://developers.google.com/search/docs/appearance/structured-data/faqpage',
-        ],
-    ],
-    'HowTo' => [
-        [
-            'publisher' => 'Google',
-            'link' => 'https://developers.google.com/search/docs/data-types/how-to',
         ],
     ],
     'ImageObject' => [
