@@ -15,11 +15,16 @@ use Brotkrueml\SchemaGenerator\Collector;
 use Brotkrueml\SchemaGenerator\Enumerations\Extensions;
 use Brotkrueml\SchemaGenerator\Generator;
 use Brotkrueml\SchemaGenerator\Writer;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(
+    name: 'schema:generate',
+    description: 'Generates the classes for the given vocabulary',
+)]
 final class GenerateCommand extends Command
 {
     private const EXTENSIONS = [
@@ -30,8 +35,6 @@ final class GenerateCommand extends Command
         'pending',
     ];
     private const PATH_SCHEMA = __DIR__ . '/../../schema/schemaorg-current-https.jsonld';
-
-    protected static $defaultName = 'schema:generate';
 
     private Writer $writer;
 
@@ -44,8 +47,6 @@ final class GenerateCommand extends Command
 
     protected function configure(): void
     {
-        $this->setDescription('Generates the classes for the given vocabulary');
-
         $this
             ->addArgument(
                 'extension',

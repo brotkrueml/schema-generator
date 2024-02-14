@@ -14,7 +14,7 @@
         "ext-ctype": "*",
         "ext-intl": "*",
         "ext-mbstring": "*",
-		"symfony/console": "^6.3",
+		"symfony/console": "^7.0",
 		"twig/twig": "^3.8"
 	},
 	"require-dev": {
