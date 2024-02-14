@@ -20,8 +20,7 @@ final class AdditionalProperties
 
     public function __construct(
         private Extension $extension,
-    ) {
-    }
+    ) {}
 
     public function addPropertiesToType(Type $type, Property ...$properties): void
     {

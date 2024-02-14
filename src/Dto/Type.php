@@ -22,8 +22,7 @@ final class Type
         private string $className,
         private array $subClassOf,
         private Extension $extension,
-    ) {
-    }
+    ) {}
 
     public function getId(): string
     {

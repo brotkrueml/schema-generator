@@ -17,8 +17,7 @@ final class Property
         private string $id,
         private array $types,
         private Extension $extension,
-    ) {
-    }
+    ) {}
 
     public function getId(): string
     {

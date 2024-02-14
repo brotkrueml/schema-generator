@@ -21,8 +21,7 @@ final class Writer
 
     public function __construct(
         private Environment $twig,
-    ) {
-    }
+    ) {}
 
     public function write(string $path, string $template, array $context): void
     {
