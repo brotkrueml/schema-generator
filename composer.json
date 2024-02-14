@@ -19,7 +19,7 @@
 	},
 	"require-dev": {
         "brotkrueml/coding-standards": "~5.1.0",
-		"phpunit/phpunit": "^10.5"
+		"phpunit/phpunit": "^11.0"
 	},
     "replace": {
         "symfony/polyfill-ctype": "*",

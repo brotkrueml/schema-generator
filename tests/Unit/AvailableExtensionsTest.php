@@ -13,9 +13,11 @@ namespace Brotkrueml\SchemaGenerator\Tests\Unit;
 
 use Brotkrueml\SchemaGenerator\AvailableExtensions;
 use Brotkrueml\SchemaGenerator\Enumerations\Namespaces;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-class AvailableExtensionsTest extends TestCase
+final class AvailableExtensionsTest extends TestCase
 {
     private AvailableExtensions $subject;
 
@@ -24,10 +26,8 @@ class AvailableExtensionsTest extends TestCase
         $this->subject = new AvailableExtensions();
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForGetExtensionByUri
-     */
+    #[Test]
+    #[DataProvider('dataProviderForGetExtensionByUri')]
     public function getExtensionByUriReturnsCorrectExtension(string $uri, string $expectedName): void
     {
         $actual = $this->subject->getExtensionByUri($uri);
@@ -63,10 +63,8 @@ class AvailableExtensionsTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
-    public function getByuriThrowsExceptionOnInvalidUri(): void
+    #[Test]
+    public function getByUriThrowsExceptionOnInvalidUri(): void
     {
         $this->expectException(\DomainException::class);
         $this->expectExceptionCode(1617384097);
@@ -74,10 +72,8 @@ class AvailableExtensionsTest extends TestCase
         $this->subject->getExtensionByUri('notexisting');
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForGetNamespaceByName
-     */
+    #[Test]
+    #[DataProvider('dataProviderForGetNamespaceByName')]
     public function getNamespaceByNameReturnsCorrectNamespace(string $name, string $expectedNamespace): void
     {
         $actual = $this->subject->getNamespaceByName($name);
@@ -113,9 +109,7 @@ class AvailableExtensionsTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getNamespaceByNameThrowsExceptionOnInvalidUri(): void
     {
         $this->expectException(\DomainException::class);
