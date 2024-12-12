@@ -13,7 +13,7 @@ namespace Brotkrueml\SchemaGenerator\Builder;
 
 use Brotkrueml\SchemaGenerator\AvailableExtensions;
 use Brotkrueml\SchemaGenerator\Dto\Type;
-use Brotkrueml\SchemaGenerator\Enumerations\Attributes;
+use Brotkrueml\SchemaGenerator\Enumerations\Attribute;
 
 final readonly class TypeBuilder
 {
@@ -29,16 +29,16 @@ final readonly class TypeBuilder
     public function build(array $term): Type
     {
         $subClassOf = [];
-        if ($term[Attributes::SUBCLASS_OF] ?? false) {
-            $subClassOf = $this->normaliser->normaliseIdFromClasses($term[Attributes::SUBCLASS_OF]);
+        if ($term[Attribute::SubClassOf->value] ?? false) {
+            $subClassOf = $this->normaliser->normaliseIdFromClasses($term[Attribute::SubClassOf->value]);
         }
 
         $isPartOf = '';
-        if ($term[Attributes::IS_PART_OF] ?? false) {
-            $isPartOf = $term[Attributes::IS_PART_OF][Attributes::ID];
+        if ($term[Attribute::IsPartOf->value] ?? false) {
+            $isPartOf = $term[Attribute::IsPartOf->value][Attribute::Id->value];
         }
 
-        $id = $this->normaliser->normaliseId($term[Attributes::ID]);
+        $id = $this->normaliser->normaliseId($term[Attribute::Id->value]);
 
         $className = $id;
         if (\preg_match('/^[0-9].*/', $className, $matches)) {
@@ -48,7 +48,7 @@ final readonly class TypeBuilder
 
         return new Type(
             $id,
-            $this->normaliser->normaliseComment($term[Attributes::COMMENT]),
+            $this->normaliser->normaliseComment($term[Attribute::Comment->value]),
             $className,
             $subClassOf,
             $this->availableExtensions->getExtensionByUri($isPartOf),

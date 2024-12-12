@@ -13,7 +13,7 @@ namespace Brotkrueml\SchemaGenerator\Builder;
 
 use Brotkrueml\SchemaGenerator\AvailableExtensions;
 use Brotkrueml\SchemaGenerator\Dto\Property;
-use Brotkrueml\SchemaGenerator\Enumerations\Attributes;
+use Brotkrueml\SchemaGenerator\Enumerations\Attribute;
 
 final readonly class PropertyBuilder
 {
@@ -29,17 +29,17 @@ final readonly class PropertyBuilder
     public function build(array $term): Property
     {
         $domainIncludes = [];
-        if ($term[Attributes::DOMAIN_INCLUDES] ?? false) {
-            $domainIncludes = $this->normaliser->normaliseIdFromClasses($term[Attributes::DOMAIN_INCLUDES]);
+        if ($term[Attribute::DomainIncludes->value] ?? false) {
+            $domainIncludes = $this->normaliser->normaliseIdFromClasses($term[Attribute::DomainIncludes->value]);
         }
 
         $isPartOf = '';
-        if ($term[Attributes::IS_PART_OF] ?? false) {
-            $isPartOf = $term[Attributes::IS_PART_OF]['@id'];
+        if ($term[Attribute::IsPartOf->value] ?? false) {
+            $isPartOf = $term[Attribute::IsPartOf->value]['@id'];
         }
 
         return new Property(
-            $this->normaliser->normaliseId($term[Attributes::ID]),
+            $this->normaliser->normaliseId($term[Attribute::Id->value]),
             $domainIncludes,
             $this->availableExtensions->getExtensionByUri($isPartOf),
         );

@@ -14,7 +14,7 @@ namespace Brotkrueml\SchemaGenerator;
 use Brotkrueml\SchemaGenerator\Builder\PropertyBuilder;
 use Brotkrueml\SchemaGenerator\Builder\TypeBuilder;
 use Brotkrueml\SchemaGenerator\Dto\Type;
-use Brotkrueml\SchemaGenerator\Enumerations\Attributes;
+use Brotkrueml\SchemaGenerator\Enumerations\Attribute;
 
 final class Collector
 {
@@ -85,7 +85,7 @@ final class Collector
                 continue;
             }
 
-            if ($term[Attributes::SUPERSEDED_BY] ?? false) {
+            if ($term[Attribute::SupersededBy->value] ?? false) {
                 continue;
             }
 
@@ -97,8 +97,8 @@ final class Collector
 
     private function isMetaExtension(array $term): bool
     {
-        if ($term[Attributes::IS_PART_OF] ?? false) {
-            return $term[Attributes::IS_PART_OF][Attributes::ID] === 'https://meta.schema.org';
+        if ($term[Attribute::IsPartOf->value] ?? false) {
+            return $term[Attribute::IsPartOf->value][Attribute::Id->value] === 'https://meta.schema.org';
         }
 
         return false;
@@ -115,7 +115,7 @@ final class Collector
                 continue;
             }
 
-            if ($term[Attributes::SUPERSEDED_BY] ?? false) {
+            if ($term[Attribute::SupersededBy->value] ?? false) {
                 continue;
             }
 
