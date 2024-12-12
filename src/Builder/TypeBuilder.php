@@ -15,7 +15,7 @@ use Brotkrueml\SchemaGenerator\AvailableExtensions;
 use Brotkrueml\SchemaGenerator\Dto\Type;
 use Brotkrueml\SchemaGenerator\Enumerations\Attributes;
 
-final class TypeBuilder
+final readonly class TypeBuilder
 {
     private AvailableExtensions $availableExtensions;
     private Normaliser $normaliser;

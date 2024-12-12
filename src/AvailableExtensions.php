@@ -33,7 +33,7 @@ final class AvailableExtensions
             static fn(Extension $extension): bool => $extension->getUri() === $uri,
         );
 
-        if (\count($extensions) === 0) {
+        if ($extensions === []) {
             throw new \DomainException(
                 \sprintf('Extension uri "%s" not available', $uri),
                 1617384097,

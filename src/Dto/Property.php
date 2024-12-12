@@ -11,26 +11,11 @@ declare(strict_types=1);
 
 namespace Brotkrueml\SchemaGenerator\Dto;
 
-final class Property
+final readonly class Property
 {
     public function __construct(
-        private string $id,
-        private array $types,
-        private Extension $extension,
+        public string $id,
+        public array $types,
+        public Extension $extension,
     ) {}
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getTypes(): array
-    {
-        return $this->types;
-    }
-
-    public function getExtension(): Extension
-    {
-        return $this->extension;
-    }
 }

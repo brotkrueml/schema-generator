@@ -13,7 +13,7 @@ namespace Brotkrueml\SchemaGenerator;
 
 use Twig\Environment;
 
-final class Writer
+final readonly class Writer
 {
     public const TEMPLATE_ADDITIONAL_PROPERTIES = 'RegisterAdditionalProperties';
     public const TEMPLATE_MODEL = 'Model';

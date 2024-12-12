@@ -120,7 +120,7 @@ final class Collector
             }
 
             $property = $this->propertyBuilder->build($term);
-            foreach ($property->getTypes() as $typeId) {
+            foreach ($property->types as $typeId) {
                 if ($this->types[$typeId] ?? false) {
                     $this->types[$typeId]->addProperty($property);
                 }

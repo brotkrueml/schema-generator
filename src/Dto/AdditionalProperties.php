@@ -19,7 +19,7 @@ final class AdditionalProperties
     private array $terms = [];
 
     public function __construct(
-        private Extension $extension,
+        private readonly Extension $extension,
     ) {}
 
     public function addPropertiesToType(Type $type, Property ...$properties): void
@@ -34,8 +34,8 @@ final class AdditionalProperties
         }
 
         foreach ($properties as $property) {
-            if (! \in_array($property->getId(), $this->terms[$extensionName][$type->getClassName()], true)) {
-                $this->terms[$extensionName][$type->getClassName()][] = $property->getId();
+            if (! \in_array($property->id, $this->terms[$extensionName][$type->getClassName()], true)) {
+                $this->terms[$extensionName][$type->getClassName()][] = $property->id;
             }
         }
     }

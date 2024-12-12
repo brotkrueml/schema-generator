@@ -20,7 +20,7 @@ final class Extension implements \Stringable
     private string $namespace;
 
     public function __construct(
-        private string $name,
+        private readonly string $name,
     ) {
         $extensionConstant = Extensions::class . '::' . \strtoupper($name);
         if (! \defined($extensionConstant)) {

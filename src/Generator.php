@@ -186,7 +186,7 @@ final class Generator
     {
         $properties = \array_values(\array_filter(
             $type->getProperties(),
-            fn(Property $property): bool => \in_array($property->getExtension()->getUri(), ['', $this->extension->getUri()], true),
+            fn(Property $property): bool => \in_array($property->extension->getUri(), ['', $this->extension->getUri()], true),
         ));
 
         foreach ($type->getParentIds() as $parentTypeId) {
@@ -202,7 +202,7 @@ final class Generator
     private function generateModelClass(string $typeId, array $properties): void
     {
         $propertyIds = \array_map(
-            static fn(Property $property): string => $property->getId(),
+            static fn(Property $property): string => $property->id,
             $properties,
         );
         $propertyIds = \array_unique($propertyIds);
@@ -248,7 +248,7 @@ final class Generator
     {
         $propertiesForExtension = \array_values(\array_filter(
             $properties,
-            fn(Property $property): bool => (string) $property->getExtension() === (string) $this->extension,
+            fn(Property $property): bool => (string) $property->extension === (string) $this->extension,
         ));
 
         if (\count($propertiesForExtension) > 0) {

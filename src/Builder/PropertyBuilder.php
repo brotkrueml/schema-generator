@@ -15,7 +15,7 @@ use Brotkrueml\SchemaGenerator\AvailableExtensions;
 use Brotkrueml\SchemaGenerator\Dto\Property;
 use Brotkrueml\SchemaGenerator\Enumerations\Attributes;
 
-final class PropertyBuilder
+final readonly class PropertyBuilder
 {
     private AvailableExtensions $availableExtensions;
     private Normaliser $normaliser;

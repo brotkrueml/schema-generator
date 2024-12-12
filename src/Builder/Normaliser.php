@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\SchemaGenerator\Builder;
 
-final class Normaliser
+final readonly class Normaliser
 {
     public function normaliseComment(string|array $comment): string
     {
