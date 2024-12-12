@@ -13,9 +13,9 @@ namespace Brotkrueml\SchemaGenerator\Enumerations;
 
 final class Namespaces
 {
-    public const AUTO = 'Brotkrueml\\SchemaAuto\\';
-    public const BIB = 'Brotkrueml\\SchemaBib\\';
-    public const CORE = 'Brotkrueml\\Schema\\';
-    public const HEALTH = 'Brotkrueml\\SchemaHealth\\';
-    public const PENDING = 'Brotkrueml\\SchemaPending\\';
+    public const AUTO = 'Brotkrueml\SchemaAuto\\';
+    public const BIB = 'Brotkrueml\SchemaBib\\';
+    public const CORE = 'Brotkrueml\Schema\\';
+    public const HEALTH = 'Brotkrueml\SchemaHealth\\';
+    public const PENDING = 'Brotkrueml\SchemaPending\\';
 }

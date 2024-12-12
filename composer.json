@@ -14,18 +14,19 @@
         "ext-ctype": "*",
         "ext-intl": "*",
         "ext-mbstring": "*",
-		"symfony/console": "^7.0",
-		"twig/twig": "^3.8"
+		"symfony/console": "^7.2",
+		"twig/twig": "^3.17"
 	},
 	"require-dev": {
-        "brotkrueml/coding-standards": "~5.1.0",
-		"phpunit/phpunit": "^11.0"
+        "brotkrueml/coding-standards": "~6.1.0",
+		"phpunit/phpunit": "^11.5"
 	},
     "replace": {
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-intl-grapheme": "*",
         "symfony/polyfill-intl-normalizer":  "*",
-        "symfony/polyfill-mbstring": "*"
+        "symfony/polyfill-mbstring": "*",
+        "symfony/polyfill-php81": "*"
     },
 	"autoload": {
 		"psr-4": {

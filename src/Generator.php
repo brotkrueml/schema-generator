@@ -122,7 +122,7 @@ final class Generator
     {
         $specialTypesForExtension = \array_values(\array_filter(
             $this->collectSpecialTypes($type),
-            fn(Type $type): bool => (string)$type->getExtension() === (string)$this->extension,
+            fn(Type $type): bool => (string) $type->getExtension() === (string) $this->extension,
         ));
         $specialTypeIds = \array_map(
             static fn(Type $type): string => $type->getId(),
@@ -162,7 +162,7 @@ final class Generator
 
         $properties = $this->collectProperties($type);
 
-        if ((string)$type->getExtension() === (string)$this->extension) {
+        if ((string) $type->getExtension() === (string) $this->extension) {
             $this->generateModelClass($typeId, $properties);
             $this->generateViewHelperClass($typeId);
             $this->addTypeToAvailableTypes($typeId);
@@ -248,7 +248,7 @@ final class Generator
     {
         $propertiesForExtension = \array_values(\array_filter(
             $properties,
-            fn(Property $property): bool => (string)$property->getExtension() === (string)$this->extension,
+            fn(Property $property): bool => (string) $property->getExtension() === (string) $this->extension,
         ));
 
         if (\count($propertiesForExtension) > 0) {

@@ -37,7 +37,7 @@ final class Normaliser
             '&lt;' => '<',
             '&gt;' => '>',
             '&#x2014;' => ' - ',
-            '\\n' => "\n",
+            '\n' => "\n",
             '<a href="/' => '<a href="https://schema.org/',
         ];
 
