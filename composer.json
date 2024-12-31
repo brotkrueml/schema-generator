@@ -10,12 +10,14 @@
 		}
 	],
 	"require": {
-		"php": ">=8.3",
-        "ext-ctype": "*",
-        "ext-intl": "*",
-        "ext-mbstring": "*",
+		"php": ">=8.4",
+		"ext-ctype": "*",
+		"ext-intl": "*",
+		"ext-mbstring": "*",
+		"monolog/monolog": "^3.8",
+		"php-di/php-di": "^7.0",
 		"symfony/console": "^7.2",
-		"twig/twig": "^3.17"
+		"twig/twig": "^3.18"
 	},
 	"require-dev": {
         "brotkrueml/coding-standards": "~6.1.0",

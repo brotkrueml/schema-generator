@@ -5,10 +5,10 @@ namespace {{ namespace }}EventListener;
 
 use Brotkrueml\Schema\Event\RegisterAdditionalTypePropertiesEvent;
 use Brotkrueml\Schema\Model\Type;
-{% for extension, types in additionalProperties.terms %}
-    {% if extension != 'core' %}
-        {% set namespace = availableExtensions.getNamespaceByName(extension) %}
-        use {{ namespace }}Model\Type as {{ extension|capitalize }}Type;
+{% for sectionShortName, types in additionalProperties %}
+    {% if sectionShortName != 'core' %}
+        {% set section = schema_section(sectionShortName) %}
+        use {{ section.phpNamespace }}Model\Type as {{ section.name }}Type;
     {% endif %}
 {% endfor %}
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -17,21 +17,22 @@ final class RegisterAdditionalProperties
 {
     public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
     {
-        {% for extension, types in additionalProperties.terms %}
-            {% if extension == 'core' %}
-                {% for type, properties in types %}
-                    if ($event->getType() === Type\{{ type }}::class) {
+        {% for sectionShortName, types in additionalProperties %}
+            {% set section = schema_section(sectionShortName) %}
+            {% if sectionShortName == 'core' %}
+                {% for typeLabel, properties in types %}
+                    if ($event->getType() === Type\{{ schema_model_class_name(typeLabel) }}::class) {
                         {% for property in properties %}
-                            $event->registerAdditionalProperty('{{ property }}');
+                            $event->registerAdditionalProperty('{{ property.id.label }}');
                         {% endfor %}
                     }
                 {% endfor %}
             {% else %}
-                if (ExtensionManagementUtility::isLoaded('schema_{{ extension }}')) {
-                    {% for type, properties in types %}
-                        if ($event->getType() === {{ extension|capitalize }}Type\{{ type }}::class) {
+                if (ExtensionManagementUtility::isLoaded('schema_{{ sectionShortName }}')) {
+                    {% for typeLabel, properties in types %}
+                        if ($event->getType() === {{ section.name }}Type\{{ schema_model_class_name(typeLabel) }}::class) {
                             {% for property in properties %}
-                                $event->registerAdditionalProperty('{{ property }}');
+                                $event->registerAdditionalProperty('{{ property.id.label }}');
                             {% endfor %}
                         }
                     {% endfor %}

@@ -6,9 +6,9 @@ namespace {{ namespace }}ViewHelpers\Type;
 use Brotkrueml\Schema\Core\ViewHelpers\AbstractTypeViewHelper;
 
 /**
- * {{ comment|raw }}
+ * {{ type.comment.text|raw }}
  */
 final class {{ className }} extends AbstractTypeViewHelper
 {
-    protected string $type = '{{ type }}';
+    protected string $type = '{{ type.id.label }}';
 }

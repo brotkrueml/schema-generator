@@ -2,21 +2,16 @@
 
 declare(strict_types=1);
 
+use Brotkrueml\SchemaGenerator\Command\GenerateCommand;
+use DI\ContainerBuilder;
+use Symfony\Component\Console\Application;
+
 require __DIR__ . '/../vendor/autoload.php';
 
-use Brotkrueml\SchemaGenerator\Writer;
-use Brotkrueml\SchemaGenerator\Commands\GenerateCommand;
-use Symfony\Component\Console\Application;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+$containerBuilder = new ContainerBuilder();
+$containerBuilder->addDefinitions(__DIR__ . '/../config/container.php');
+$container = $containerBuilder->build();
 
 $application = new Application();
-
-$loader = new FilesystemLoader(__DIR__ . '/../templates');
-$twig = new Environment($loader, [
-    'cache' => false,
-]);
-$writer = new Writer($twig);
-$application->add(new GenerateCommand($writer));
-
+$application->add($container->get(GenerateCommand::class));
 $application->run();

@@ -14,11 +14,11 @@ use Brotkrueml\Schema\Core\Model\AbstractType;
 {% endif %}
 
 /**
- * {{ comment|raw }}
+ * {{ type.comment.text|raw }}
  */
-#[Type('{{ type }}')]
+#[Type('{{ type.id.label }}')]
 {% for manual in manuals %}
-    #[Manual(Publisher::{{ manual.publisher }}, '{{ manual.link }}')]
+    #[Manual(Publisher::{{ manual.publisher.name }}, '{{ manual.link }}')]
 {% endfor %}
 final class {{ className }} extends AbstractType
 {% if isWebPageType %}
@@ -27,7 +27,7 @@ final class {{ className }} extends AbstractType
 {
     protected static array $propertyNames = [
         {% for property in properties %}
-            '{{ property }}',
+            '{{ property.id.label }}',
         {% endfor %}
     ];
 }
