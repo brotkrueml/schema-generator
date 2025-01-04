@@ -14,6 +14,7 @@ namespace Brotkrueml\SchemaGenerator\Tests\Unit\Schema\Vocabulary;
 use Brotkrueml\SchemaGenerator\Schema\Section;
 use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Comment;
 use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Id;
+use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Property;
 use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Type;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
@@ -76,5 +77,41 @@ final class TypeTest extends TestCase
 
         self::assertContains($organizationId, $actual);
         self::assertContains($placeId, $actual);
+    }
+
+    #[Test]
+    public function propertiesReturnsPropertiesCorrectly(): void
+    {
+        $properties = [
+            new Property(
+                new Id('schema:name'),
+                new Comment('The name of the item. '),
+                Section::Core,
+            ),
+            new Property(
+                new Id('schema:url'),
+                new Comment('URL of the item. '),
+                Section::Core,
+            ),
+        ];
+
+        $subject = new Type(
+            new Id('schema:Corporation'),
+            new Comment('Organization: A business corporation.'),
+            Section::Core,
+        );
+        $subject->addProperty($properties[0]);
+        $subject->addProperty($properties[1]);
+
+        $actual = $subject->properties();
+
+        $actualAsArray = [];
+        foreach ($actual as $property) {
+            $actualAsArray[] = $property;
+        }
+
+        self::assertCount(2, $actualAsArray);
+        self::assertContains($properties[0], $actualAsArray);
+        self::assertContains($properties[1], $actualAsArray);
     }
 }
