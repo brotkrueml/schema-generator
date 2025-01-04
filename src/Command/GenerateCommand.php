@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\SchemaGenerator\Command;
 
 use Brotkrueml\SchemaGenerator\Generation\AdditionalPropertiesGenerator;
+use Brotkrueml\SchemaGenerator\Generation\EnumerationGenerator;
 use Brotkrueml\SchemaGenerator\Generation\TypeGenerator;
 use Brotkrueml\SchemaGenerator\Schema\SchemaCollector;
 use Brotkrueml\SchemaGenerator\Schema\Section;
@@ -30,6 +31,7 @@ final class GenerateCommand extends Command
 {
     public function __construct(
         private readonly AdditionalPropertiesGenerator $additionalPropertiesGenerator,
+        private readonly EnumerationGenerator $enumerationGenerator,
         private readonly LoggerInterface $logger,
         private readonly SchemaCollector $schemaBuilder,
         private readonly TypeGenerator $typeGenerator,
@@ -63,11 +65,16 @@ final class GenerateCommand extends Command
         try {
             $this->schemaBuilder->build($this->schemaFile);
             $types = $this->schemaBuilder->types();
+            $enumerations = $this->schemaBuilder->enumerations();
 
             $this->typeGenerator->generate($section, $types, $basePath);
             $this->additionalPropertiesGenerator->generate($section, $types, $basePath);
+            $this->enumerationGenerator->generate($section, $enumerations, $basePath);
         } catch (\Throwable $t) {
-            $this->logger->error($t->getMessage());
+            $this->logger->error($t->getMessage(), [
+                'file' => $t->getFile(),
+                'line' => $t->getLine(),
+            ]);
             return Command::FAILURE;
         }
 

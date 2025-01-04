@@ -17,6 +17,7 @@ namespace Brotkrueml\SchemaGenerator\Generation;
 enum Path: string
 {
     case AdditionalProperties = 'Classes/EventListener';
+    case Enumeration = 'Classes/Model/Enumeration';
     case Model = 'Classes/Model/Type';
     case ViewHelper = 'Classes/ViewHelpers/Type';
 }

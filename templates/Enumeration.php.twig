@@ -1,0 +1,26 @@
+<?php
+declare(strict_types=1);
+
+namespace {{ namespace }}Model\Enumeration;
+
+use Brotkrueml\Schema\Core\Model\EnumerationInterface;
+
+/**
+ * {{ enumeration.comment.text|raw }}
+ * @experimental This enum is considered experimental and may change at any time until it is declared stable.
+ */
+enum {{ className }} implements EnumerationInterface
+{
+    {% for member in members %}
+        /**
+         * {{ member.comment.text|raw }}
+         */
+        case {{ member.id.label }};
+
+    {% endfor %}
+
+    public function canonical(): string
+    {
+        return 'https://schema.org/' . $this->name;
+    }
+}

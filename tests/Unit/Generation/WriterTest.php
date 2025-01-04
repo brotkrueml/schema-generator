@@ -18,7 +18,9 @@ use Brotkrueml\SchemaGenerator\Manual\Manuals;
 use Brotkrueml\SchemaGenerator\Manual\Publisher;
 use Brotkrueml\SchemaGenerator\Schema\Section;
 use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Comment;
+use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Enumeration;
 use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Id;
+use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Member;
 use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Property;
 use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Type;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -244,7 +246,7 @@ EXPECTED,
         $this->subject->write($destinationPath, $template, $context);
 
         $destinationFile = $destinationPath . '/Article.php';
-        $actual = \trim(\file_get_contents($destinationFile));
+        $actual = $this->trimSpacesFromLines(\file_get_contents($destinationFile));
 
         self::assertSame(
             <<<'EXPECTED'
@@ -253,23 +255,23 @@ declare(strict_types=1);
 
 namespace Brotkrueml\Schema\Model\Type;
 
-    use Brotkrueml\Schema\Attributes\Manual;
-    use Brotkrueml\Schema\Manual\Publisher;
+use Brotkrueml\Schema\Attributes\Manual;
+use Brotkrueml\Schema\Manual\Publisher;
 use Brotkrueml\Schema\Attributes\Type;
 use Brotkrueml\Schema\Core\Model\AbstractType;
 
 /**
- * An article.
- */
+* An article.
+*/
 #[Type('Article')]
-    #[Manual(Publisher::Google, 'https://example.org/#Article')]
-    #[Manual(Publisher::Yandex, 'https://example.com/#Article')]
+#[Manual(Publisher::Google, 'https://example.org/#Article')]
+#[Manual(Publisher::Yandex, 'https://example.com/#Article')]
 final class Article extends AbstractType
 {
-    protected static array $propertyNames = [
-                    'description',
-                    'name',
-            ];
+protected static array $propertyNames = [
+'description',
+'name',
+];
 }
 EXPECTED,
             $actual,
@@ -299,7 +301,7 @@ EXPECTED,
         $this->subject->write($destinationPath, $template, $context);
 
         $destinationFile = $destinationPath . '/ThingViewHelper.php';
-        $actual = \trim(\file_get_contents($destinationFile));
+        $actual = $this->trimSpacesFromLines(\file_get_contents($destinationFile));
 
         self::assertSame(
             <<<'EXPECTED'
@@ -311,11 +313,11 @@ namespace Brotkrueml\Schema\ViewHelpers\Type;
 use Brotkrueml\Schema\Core\ViewHelpers\AbstractTypeViewHelper;
 
 /**
- * The most generic type of item.
- */
+* The most generic type of item.
+*/
 final class ThingViewHelper extends AbstractTypeViewHelper
 {
-    protected string $type = 'Thing';
+protected string $type = 'Thing';
 }
 EXPECTED,
             $actual,
@@ -363,7 +365,7 @@ EXPECTED,
         $this->subject->write($destinationPath, $template, $context);
 
         $destinationFile = $destinationPath . '/AdditionalProperties.php';
-        $actual = \trim(\file_get_contents($destinationFile));
+        $actual = $this->trimSpacesFromLines(\file_get_contents($destinationFile));
 
         self::assertSame(
             <<<'EXPECTED'
@@ -374,36 +376,130 @@ namespace Brotkrueml\SchemaPending\EventListener;
 
 use Brotkrueml\Schema\Event\RegisterAdditionalTypePropertiesEvent;
 use Brotkrueml\Schema\Model\Type;
-                        use Brotkrueml\SchemaAuto\Model\Type as AutoType;
-                        use Brotkrueml\SchemaHealth\Model\Type as HealthType;
-    use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use Brotkrueml\SchemaAuto\Model\Type as AutoType;
+use Brotkrueml\SchemaHealth\Model\Type as HealthType;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 final class RegisterAdditionalProperties
 {
-    public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
-    {
-                                                                    if ($event->getType() === Type\AboutPage::class) {
-                                                    $event->registerAdditionalProperty('abstract');
-                                            }
-                                                                            if (ExtensionManagementUtility::isLoaded('schema_auto')) {
-                                            if ($event->getType() === AutoType\BusOrCoach::class) {
-                                                            $event->registerAdditionalProperty('asin');
-                                                            $event->registerAdditionalProperty('callSign');
-                                                    }
-                                    }
-                                                            if (ExtensionManagementUtility::isLoaded('schema_health')) {
-                                            if ($event->getType() === HealthType\Drug::class) {
-                                                            $event->registerAdditionalProperty('includedInHealthInsurancePlan');
-                                                            $event->registerAdditionalProperty('positiveNotes');
-                                                    }
-                                            if ($event->getType() === HealthType\Joint::class) {
-                                                            $event->registerAdditionalProperty('funding');
-                                                    }
-                                    }
-                        }
+public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
+{
+if ($event->getType() === Type\AboutPage::class) {
+$event->registerAdditionalProperty('abstract');
+}
+if (ExtensionManagementUtility::isLoaded('schema_auto')) {
+if ($event->getType() === AutoType\BusOrCoach::class) {
+$event->registerAdditionalProperty('asin');
+$event->registerAdditionalProperty('callSign');
+}
+}
+if (ExtensionManagementUtility::isLoaded('schema_health')) {
+if ($event->getType() === HealthType\Drug::class) {
+$event->registerAdditionalProperty('includedInHealthInsurancePlan');
+$event->registerAdditionalProperty('positiveNotes');
+}
+if ($event->getType() === HealthType\Joint::class) {
+$event->registerAdditionalProperty('funding');
+}
+}
+}
 }
 EXPECTED,
             $actual,
         );
+    }
+
+    #[Test]
+    public function writeRsvpResponseTypeAsEnumeration(): void
+    {
+        $enumeration = new Enumeration(
+            new Id('schema:RsvpResponseType'),
+            new Comment('RsvpResponseType is an enumeration type whose instances represent responding to an RSVP request.'),
+            Section::Core,
+        );
+
+        $members = [
+            'RsvpResponseYes' => new Member(
+                new Id('schema:RsvpResponseYes'),
+                new Comment('The invitee will attend.'),
+            ),
+            'RsvpResponseMaybe' => new Member(
+                new Id('schema:RsvpResponseMaybe'),
+                new Comment('The invitee may or may not attend.'),
+            ),
+            'RsvpResponseNo' => new Member(
+                new Id('schema:RsvpResponseNo'),
+                new Comment('The invitee will not attend.'),
+            ),
+        ];
+
+        $context = [
+            'className' => 'RsvpResponseType',
+            'enumeration' => $enumeration,
+            'namespace' => Section::Core->phpNamespace(),
+            'members' => $members,
+        ];
+
+        $destinationPath = \sys_get_temp_dir();
+        $template = Template::Enumeration;
+
+        $this->subject->write($destinationPath, $template, $context);
+
+        $destinationFile = $destinationPath . '/RsvpResponseType.php';
+        $actual = $this->trimSpacesFromLines(\file_get_contents($destinationFile));
+
+        self::assertSame(
+            <<<'EXPECTED'
+<?php
+declare(strict_types=1);
+
+namespace Brotkrueml\Schema\Model\Enumeration;
+
+use Brotkrueml\Schema\Core\Model\EnumerationInterface;
+
+/**
+* RsvpResponseType is an enumeration type whose instances represent responding to an RSVP request.
+* @experimental This enum is considered experimental and may change at any time until it is declared stable.
+*/
+enum RsvpResponseType implements EnumerationInterface
+{
+/**
+* The invitee will attend.
+*/
+case RsvpResponseYes;
+
+/**
+* The invitee may or may not attend.
+*/
+case RsvpResponseMaybe;
+
+/**
+* The invitee will not attend.
+*/
+case RsvpResponseNo;
+
+
+public function canonical(): string
+{
+return 'https://schema.org/' . $this->name;
+}
+}
+EXPECTED,
+            $actual,
+        );
+    }
+
+    private function trimSpacesFromLines(string $text): string
+    {
+        $lines = \explode(
+            "\n",
+            $text,
+        );
+
+        \array_walk($lines, static function (string &$line): void {
+            $line = \trim($line);
+        });
+
+        return \trim(\implode("\n", $lines));
     }
 }
