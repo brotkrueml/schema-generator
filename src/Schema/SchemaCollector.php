@@ -128,6 +128,7 @@ final readonly class SchemaCollector
             );
             if (\in_array('schema:Enumeration', $parentIds, true)) {
                 $this->enumerations->addEnumeration(new Enumeration($type->id(), $type->comment(), $type->section()));
+                $type->setAsEnumeration();
             }
         }
     }

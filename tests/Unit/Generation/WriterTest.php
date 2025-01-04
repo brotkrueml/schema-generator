@@ -94,7 +94,7 @@ final class WriterTest extends TestCase
         $this->subject->write($destinationPath, $template, $context);
 
         $destinationFile = $destinationPath . '/Thing.php';
-        $actual = \trim(\file_get_contents($destinationFile));
+        $actual = $this->trimSpacesFromLines(\file_get_contents($destinationFile));
 
         self::assertSame(
             <<<'EXPECTED'
@@ -103,21 +103,92 @@ declare(strict_types=1);
 
 namespace Brotkrueml\Schema\Model\Type;
 
-    use Brotkrueml\Schema\Attributes\Manual;
-    use Brotkrueml\Schema\Manual\Publisher;
+use Brotkrueml\Schema\Attributes\Manual;
+use Brotkrueml\Schema\Manual\Publisher;
 use Brotkrueml\Schema\Attributes\Type;
 use Brotkrueml\Schema\Core\Model\AbstractType;
 
 /**
- * The most generic type of item.
- */
+* The most generic type of item.
+*/
 #[Type('Thing')]
 final class Thing extends AbstractType
 {
-    protected static array $propertyNames = [
-                    'description',
-                    'name',
-            ];
+protected static array $propertyNames = [
+'description',
+'name',
+];
+}
+EXPECTED,
+            $actual,
+        );
+    }
+
+    #[Test]
+    public function writeBusinessEntityTypeAsDeprecatedModel(): void
+    {
+        $section = Section::Core;
+
+        $type = new Type(
+            new Id('schema:BusinessEntityType'),
+            new Comment('A business entity type is a conceptual entity representing the legal form.'),
+            $section,
+        );
+        $type->setAsEnumeration();
+
+        $properties = [
+            'description' => new Property(
+                new Id('schema:description'),
+                new Comment('A description of the item.'),
+                $section,
+            ),
+            'name' => new Property(
+                new Id('schema:name'),
+                new Comment('The name of the item.'),
+                $section,
+            ),
+        ];
+
+        $context = [
+            'className' => 'BusinessEntityType',
+            'isWebPageType' => false,
+            'manuals' => new Manuals(),
+            'namespace' => $section->phpNamespace(),
+            'properties' => $properties,
+            'type' => $type,
+        ];
+
+        $destinationPath = \sys_get_temp_dir();
+        $template = Template::Model;
+
+        $this->subject->write($destinationPath, $template, $context);
+
+        $destinationFile = $destinationPath . '/BusinessEntityType.php';
+        $actual = $this->trimSpacesFromLines(\file_get_contents($destinationFile));
+
+        self::assertSame(
+            <<<'EXPECTED'
+<?php
+declare(strict_types=1);
+
+namespace Brotkrueml\Schema\Model\Type;
+
+use Brotkrueml\Schema\Attributes\Manual;
+use Brotkrueml\Schema\Manual\Publisher;
+use Brotkrueml\Schema\Attributes\Type;
+use Brotkrueml\Schema\Core\Model\AbstractType;
+
+/**
+* A business entity type is a conceptual entity representing the legal form.
+* @deprecated This type represents an enumeration, use the specific BusinessEntityType enum instead.
+*/
+#[Type('BusinessEntityType')]
+final class BusinessEntityType extends AbstractType
+{
+protected static array $propertyNames = [
+'description',
+'name',
+];
 }
 EXPECTED,
             $actual,
@@ -163,7 +234,7 @@ EXPECTED,
         $this->subject->write($destinationPath, $template, $context);
 
         $destinationFile = $destinationPath . '/WebPage.php';
-        $actual = \trim(\file_get_contents($destinationFile));
+        $actual = $this->trimSpacesFromLines(\file_get_contents($destinationFile));
 
         self::assertSame(
             <<<'EXPECTED'
@@ -172,23 +243,23 @@ declare(strict_types=1);
 
 namespace Brotkrueml\Schema\Model\Type;
 
-    use Brotkrueml\Schema\Attributes\Manual;
-    use Brotkrueml\Schema\Manual\Publisher;
+use Brotkrueml\Schema\Attributes\Manual;
+use Brotkrueml\Schema\Manual\Publisher;
 use Brotkrueml\Schema\Attributes\Type;
 use Brotkrueml\Schema\Core\Model\AbstractType;
-    use Brotkrueml\Schema\Core\Model\WebPageTypeInterface;
+use Brotkrueml\Schema\Core\Model\WebPageTypeInterface;
 
 /**
- * A web page.
- */
+* A web page.
+*/
 #[Type('WebPage')]
 final class WebPage extends AbstractType
-    implements WebPageTypeInterface
+implements WebPageTypeInterface
 {
-    protected static array $propertyNames = [
-                    'description',
-                    'name',
-            ];
+protected static array $propertyNames = [
+'description',
+'name',
+];
 }
 EXPECTED,
             $actual,
@@ -318,6 +389,54 @@ use Brotkrueml\Schema\Core\ViewHelpers\AbstractTypeViewHelper;
 final class ThingViewHelper extends AbstractTypeViewHelper
 {
 protected string $type = 'Thing';
+}
+EXPECTED,
+            $actual,
+        );
+    }
+
+    #[Test]
+    public function writeBusinessEntityTypeAsDeprecatedViewHelper(): void
+    {
+        $section = Section::Core;
+
+        $type = new Type(
+            new Id('schema:BusinessEntityType'),
+            new Comment('A business entity type is a conceptual entity representing the legal form.'),
+            $section,
+        );
+        $type->setAsEnumeration();
+
+        $context = [
+            'className' => 'BusinessEntityTypeViewHelper',
+            'namespace' => $section->phpNamespace(),
+            'type' => $type,
+        ];
+
+        $destinationPath = \sys_get_temp_dir();
+        $template = Template::ViewHelper;
+
+        $this->subject->write($destinationPath, $template, $context);
+
+        $destinationFile = $destinationPath . '/BusinessEntityTypeViewHelper.php';
+        $actual = $this->trimSpacesFromLines(\file_get_contents($destinationFile));
+
+        self::assertSame(
+            <<<'EXPECTED'
+<?php
+declare(strict_types=1);
+
+namespace Brotkrueml\Schema\ViewHelpers\Type;
+
+use Brotkrueml\Schema\Core\ViewHelpers\AbstractTypeViewHelper;
+
+/**
+* A business entity type is a conceptual entity representing the legal form.
+* @deprecated This type represents an enumeration, use the enum with the {f:constant()} ViewHelper instead (available since Fluid 2.12).
+*/
+final class BusinessEntityTypeViewHelper extends AbstractTypeViewHelper
+{
+protected string $type = 'BusinessEntityType';
 }
 EXPECTED,
             $actual,

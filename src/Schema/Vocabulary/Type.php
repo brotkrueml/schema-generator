@@ -16,15 +16,16 @@ use Brotkrueml\SchemaGenerator\Schema\Section;
 /**
  * Relates to "@type": "rdfs:Class"
  */
-final readonly class Type
+final class Type
 {
-    private Ids $parentIds;
-    private Properties $properties;
+    private readonly Ids $parentIds;
+    private readonly Properties $properties;
+    private bool $isEnumeration = false;
 
     public function __construct(
-        private Id $id,
-        private Comment $comment,
-        private Section $section,
+        private readonly Id $id,
+        private readonly Comment $comment,
+        private readonly Section $section,
     ) {
         $this->parentIds = new Ids();
         $this->properties = new Properties();
@@ -38,6 +39,11 @@ final readonly class Type
     public function addProperty(Property $property): void
     {
         $this->properties->addProperty($property);
+    }
+
+    public function setAsEnumeration(): void
+    {
+        $this->isEnumeration = true;
     }
 
     public function id(): Id
@@ -63,5 +69,10 @@ final readonly class Type
     public function properties(): Properties
     {
         return $this->properties;
+    }
+
+    public function isEnumeration(): bool
+    {
+        return $this->isEnumeration;
     }
 }
