@@ -33,13 +33,7 @@ final class Types implements \IteratorAggregate
         ));
 
         if ($type === []) {
-            throw new TypeNotFoundException(
-                \sprintf(
-                    'No type with id "%s" found',
-                    $typeId->id(),
-                ),
-                1735290356,
-            );
+            throw TypeNotFoundException::typeIdNotFound($typeId);
         }
 
         return $type[0];
