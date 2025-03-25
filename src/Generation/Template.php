@@ -16,7 +16,7 @@ namespace Brotkrueml\SchemaGenerator\Generation;
  */
 enum Template: string
 {
-    case AdditionalProperties = 'RegisterAdditionalProperties.php.twig';
+    case AdditionalProperties = 'AdditionalProperties.php.twig';
     case Enumeration = 'Enumeration.php.twig';
     case Model = 'Model.php.twig';
     case ViewHelper = 'ViewHelper.php.twig';

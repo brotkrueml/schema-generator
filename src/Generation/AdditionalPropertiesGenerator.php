@@ -12,12 +12,16 @@ declare(strict_types=1);
 namespace Brotkrueml\SchemaGenerator\Generation;
 
 use Brotkrueml\SchemaGenerator\Schema\Section;
+use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Comment;
+use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Id;
 use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Property;
+use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Type;
 use Brotkrueml\SchemaGenerator\Schema\Vocabulary\Types;
 
 final readonly class AdditionalPropertiesGenerator
 {
     public function __construct(
+        private ClassNameBuilder $classNameBuilder,
         private Writer $writer,
     ) {}
 
@@ -27,31 +31,27 @@ final readonly class AdditionalPropertiesGenerator
             return;
         }
 
-        $additionalPropertiesBySectionAndType = $this->collectAdditionalPropertiesOfSection($section, $types);
+        $this->removeOldFiles($basePath);
 
-        // Sort section short names, move "core" to the start of the array
-        \uksort($additionalPropertiesBySectionAndType, static function (string $a, string $b): int {
-            if ($a === 'core') {
-                $a = '';
-            }
-            if ($b === 'core') {
-                $b = '';
-            }
+        $additionalPropertiesByType = $this->collectAdditionalPropertiesOfSection($section, $types);
 
-            return \strcasecmp($a, $b);
-        });
-
-        foreach ($additionalPropertiesBySectionAndType as $sectionShortName => $types) {
-            \ksort($additionalPropertiesBySectionAndType[$sectionShortName]);
-            foreach ($types as $typeLabel => $_) {
-                \usort(
-                    $additionalPropertiesBySectionAndType[$sectionShortName][$typeLabel],
-                    static fn(Property $a, Property $b): int => $a->id()->label() <=> $b->id()->label(),
-                );
-            }
+        foreach ($additionalPropertiesByType as $typeLabel => $_) {
+            \usort(
+                $additionalPropertiesByType[$typeLabel],
+                static fn(Property $a, Property $b): int => $a->id()->label() <=> $b->id()->label(),
+            );
         }
 
-        $this->generateAdditionalProperties($section, $additionalPropertiesBySectionAndType, $basePath);
+        $this->generateAdditionalProperties($section, $additionalPropertiesByType, $basePath);
+    }
+
+    private function removeOldFiles(string $basePath): void
+    {
+        $path = $basePath . '/' . Path::AdditionalProperties->value;
+
+        foreach (\glob($path . '/*.php') as $filename) {
+            @\unlink($filename);
+        }
     }
 
     /**
@@ -59,7 +59,7 @@ final readonly class AdditionalPropertiesGenerator
      */
     private function collectAdditionalPropertiesOfSection(Section $section, Types $types): array
     {
-        $additionalPropertiesBySectionAndType = [];
+        $additionalPropertiesByType = [];
 
         foreach ($types as $type) {
             if ($type->section() === $section) {
@@ -71,34 +71,35 @@ final readonly class AdditionalPropertiesGenerator
                     continue;
                 }
 
-                $sectionShortName = $type->section()->shortName();
-                if (! isset($additionalPropertiesBySectionAndType[$sectionShortName])) {
-                    $additionalPropertiesBySectionAndType[$sectionShortName] = [];
-                }
-
                 $typeLabel = $type->id()->label();
-                if (! isset($additionalPropertiesBySectionAndType[$sectionShortName][$typeLabel])) {
-                    $additionalPropertiesBySectionAndType[$sectionShortName][$typeLabel] = [];
+                if (! isset($additionalPropertiesByType[$typeLabel])) {
+                    $additionalPropertiesByType[$typeLabel] = [];
                 }
 
-                $additionalPropertiesBySectionAndType[$sectionShortName][$typeLabel][] = $property;
+                $additionalPropertiesByType[$typeLabel][] = $property;
             }
         }
 
-        return $additionalPropertiesBySectionAndType;
+        return $additionalPropertiesByType;
     }
 
-    private function generateAdditionalProperties(Section $section, array $additionalPropertiesBySectionAndType, string $basePath): void
+    private function generateAdditionalProperties(Section $section, array $additionalPropertiesByType, string $basePath): void
     {
-        $path = $basePath . '/' . Path::AdditionalProperties->value;
+        $path = \sprintf(
+            '%s/%s',
+            $basePath,
+            Path::AdditionalProperties->value,
+        );
 
-        $context = [
-            'additionalProperties' => $additionalPropertiesBySectionAndType,
-            'className' => 'RegisterAdditionalProperties',
-            'currentSection' => $section,
-            'namespace' => $section->phpNamespace(),
-        ];
+        foreach ($additionalPropertiesByType as $type => $properties) {
+            $context = [
+                'additionalProperties' => $properties,
+                'className' => $this->classNameBuilder->getClassNameForModelFromType(new Type(new Id('schema:' . $type), new Comment(''), $section)),
+                'type' => $type,
+                'namespace' => $section->phpNamespace(),
+            ];
 
-        $this->writer->write($path, Template::AdditionalProperties, $context);
+            $this->writer->write($path, Template::AdditionalProperties, $context);
+        }
     }
 }
