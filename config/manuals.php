@@ -3,6 +3,12 @@
 declare(strict_types=1);
 
 return [
+    '3DModel' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#3d-model-example',
+        ],
+    ],
     'Article' => [
         [
             'publisher' => 'Google',
@@ -31,6 +37,12 @@ return [
         [
             'publisher' => 'Google',
             'link' => 'https://developers.google.com/search/docs/appearance/structured-data/vehicle-listing',
+        ],
+    ],
+    'Certification' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#certification-example',
         ],
     ],
     'ClaimReview' => [
@@ -99,6 +111,12 @@ return [
             'link' => 'https://developers.google.com/search/docs/appearance/structured-data/employer-rating',
         ],
     ],
+    'EnergyConsumptionDetails' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#3d-model-example',
+        ],
+    ],
     'Event' => [
         [
             'publisher' => 'Google',
@@ -140,6 +158,12 @@ return [
             'publisher' => 'Google',
             'link' => 'https://developers.google.com/search/docs/appearance/structured-data/math-solvers',
         ],
+    ],
+    'MerchantReturnPolicy' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#product-with-returns-example',
+        ]
     ],
     'MobileApplication' => [
         [
@@ -183,6 +207,18 @@ return [
             'link' => 'https://developers.google.com/search/docs/appearance/structured-data/estimated-salary',
         ],
     ],
+    'Offer' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing',
+        ],
+    ],
+    'OfferShippingDetails' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#product-with-shipping-example',
+        ],
+    ],
     'Organization' => [
         [
             'publisher' => 'Google',
@@ -218,6 +254,12 @@ return [
             'publisher' => 'Yandex',
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/goods-prices.html',
         ],
+    ],
+    'ProductGroup' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-variants',
+        ]
     ],
     'ProfilePage' => [
         [
@@ -263,6 +305,12 @@ return [
             'link' => 'https://developers.google.com/search/docs/appearance/structured-data/review-snippet',
         ],
     ],
+    'ShippingDeliveryTime' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#product-with-shipping-example',
+        ],
+    ],
     'SoftwareApplication' => [
         [
             'publisher' => 'Google',
@@ -271,6 +319,12 @@ return [
         [
             'publisher' => 'Yandex',
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/software.html',
+        ],
+    ],
+    'UnitPriceSpecification' => [
+        [
+            'publisher' => 'Google',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#pricing-examples',
         ],
     ],
     'VacationRental' => [
