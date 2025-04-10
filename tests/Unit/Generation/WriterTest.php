@@ -294,11 +294,13 @@ EXPECTED,
         $manuals->addManual(new Manual(
             'Article',
             Publisher::Google,
+            'Google Article',
             'https://example.org/#Article',
         ));
         $manuals->addManual(new Manual(
             'Article',
             Publisher::Yandex,
+            'Yandex Article',
             'https://example.com/#Article',
         ));
 
@@ -335,8 +337,8 @@ use Brotkrueml\Schema\Core\Model\AbstractType;
 * An article.
 */
 #[Type('Article')]
-#[Manual(Publisher::Google, 'https://example.org/#Article')]
-#[Manual(Publisher::Yandex, 'https://example.com/#Article')]
+#[Manual(Publisher::Google, 'Google Article', 'https://example.org/#Article')]
+#[Manual(Publisher::Yandex, 'Yandex Article', 'https://example.com/#Article')]
 final class Article extends AbstractType
 {
 protected static array $propertyNames = [

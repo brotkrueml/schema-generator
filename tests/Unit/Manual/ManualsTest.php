@@ -32,16 +32,19 @@ final class ManualsTest extends TestCase
             new Manual(
                 'Article',
                 Publisher::Google,
+                'A Google manual',
                 'https://example.com/Article',
             ),
             new Manual(
                 'Article',
                 Publisher::Yandex,
+                'A Yandex manual',
                 'https://example.org/Article',
             ),
             new Manual(
                 'Book',
                 Publisher::Google,
+                'Another Google manual',
                 'https://example.com/Book',
             ),
         ];
@@ -63,16 +66,19 @@ final class ManualsTest extends TestCase
             new Manual(
                 'Article',
                 Publisher::Google,
+                'A Google manual',
                 'https://example.com/Article',
             ),
             new Manual(
                 'Article',
                 Publisher::Yandex,
+                'A Yandex manual',
                 'https://example.org/Article',
             ),
             new Manual(
                 'Book',
                 Publisher::Google,
+                'Another Google manual',
                 'https://example.com/Book',
             ),
         ];
@@ -101,16 +107,19 @@ final class ManualsTest extends TestCase
             new Manual(
                 'Article',
                 Publisher::Google,
+                'A Google manual',
                 'https://example.com/Article',
             ),
             new Manual(
                 'Article',
                 Publisher::Yandex,
+                'A Yandex manual',
                 'https://example.org/Article',
             ),
             new Manual(
                 'Book',
                 Publisher::Google,
+                'Another Google manual',
                 'https://example.com/Book',
             ),
         ];

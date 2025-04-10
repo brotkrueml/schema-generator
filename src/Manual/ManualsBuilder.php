@@ -26,7 +26,14 @@ final readonly class ManualsBuilder
 
         foreach ($manualsWithType as $type => $configurations) {
             foreach ($configurations as $configuration) {
-                $manuals->addManual(new Manual($type, Publisher::{$configuration['publisher']}, $configuration['link']));
+                $manuals->addManual(
+                    new Manual(
+                        $type,
+                        Publisher::{$configuration['publisher']},
+                        $configuration['text'],
+                        $configuration['link'],
+                    ),
+                );
             }
         }
 

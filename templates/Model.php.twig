@@ -21,7 +21,7 @@ use Brotkrueml\Schema\Core\Model\AbstractType;
  */
 #[Type('{{ type.id.label }}')]
 {% for manual in manuals %}
-    #[Manual(Publisher::{{ manual.publisher.name }}, '{{ manual.link }}')]
+    #[Manual(Publisher::{{ manual.publisher.name }}, '{{ manual.text }}', '{{ manual.link }}')]
 {% endfor %}
 final class {{ className }} extends AbstractType
 {% if isWebPageType %}

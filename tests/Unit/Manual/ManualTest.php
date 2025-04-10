@@ -27,6 +27,7 @@ final class ManualTest extends TestCase
         $this->subject = new Manual(
             'Article',
             Publisher::Google,
+            'Google Article',
             'https://developers.google.com/search/docs/appearance/structured-data/article',
         );
     }
