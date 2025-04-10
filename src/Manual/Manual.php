@@ -16,6 +16,7 @@ final readonly class Manual
     public function __construct(
         private string $type,
         private Publisher $publisher,
+        private string $text,
         private string $link,
     ) {}
 
@@ -27,6 +28,11 @@ final readonly class Manual
     public function publisher(): Publisher
     {
         return $this->publisher;
+    }
+
+    public function text(): string
+    {
+        return $this->text;
     }
 
     public function link(): string
