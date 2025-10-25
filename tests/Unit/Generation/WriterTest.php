@@ -448,35 +448,17 @@ EXPECTED,
     #[Test]
     public function additionalProperties(): void
     {
-        $section = Section::Pending;
+        $section = Section::Auto;
 
-        $additionalPropertiesBySectionAndType = [
-            'core' => [
-                'AboutPage' => [
-                    new Property(new Id('schema:abstract'), new Comment('An abstract is a short description that summarizes a CreativeWork.'), $section),
-                ],
-            ],
-            'auto' => [
-                'BusOrCoach' => [
-                    new Property(new Id('schema:asin'), new Comment('An Amazon Standard Identification Number (ASIN).'), $section),
-                    new Property(new Id('schema:callSign'), new Comment('A callsign, as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles.'), $section),
-                ],
-            ],
-            'health' => [
-                'Drug' => [
-                    new Property(new Id('schema:includedInHealthInsurancePlan'), new Comment('The insurance plans that cover this drug.'), $section),
-                    new Property(new Id('schema:positiveNotes'), new Comment('Provides positive considerations regarding something.'), $section),
-                ],
-                'Joint' => [
-                    new Property(new Id('schema:funding'), new Comment('A Grant that directly or indirectly provide funding or sponsorship for this item.'), $section),
-                ],
-            ],
+        $additionalProperties = [
+            new Property(new Id('schema:asin'), new Comment('An Amazon Standard Identification Number (ASIN).'), $section),
+            new Property(new Id('schema:callSign'), new Comment('A callsign, as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles.'), $section),
         ];
 
         $context = [
-            'additionalProperties' => $additionalPropertiesBySectionAndType,
+            'additionalProperties' => $additionalProperties,
             'className' => 'AdditionalProperties',
-            'currentSection' => $section,
+            'type' => 'BusOrCoach',
             'namespace' => $section->phpNamespace(),
         ];
 
@@ -493,36 +475,23 @@ EXPECTED,
 <?php
 declare(strict_types=1);
 
-namespace Brotkrueml\SchemaPending\EventListener;
+namespace Brotkrueml\SchemaAuto\Model\AdditionalProperties;
 
-use Brotkrueml\Schema\Event\RegisterAdditionalTypePropertiesEvent;
-use Brotkrueml\Schema\Model\Type;
-use Brotkrueml\SchemaAuto\Model\Type as AutoType;
-use Brotkrueml\SchemaHealth\Model\Type as HealthType;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use Brotkrueml\Schema\Core\AdditionalPropertiesInterface;
 
-final class RegisterAdditionalProperties
+final class AdditionalProperties implements AdditionalPropertiesInterface
 {
-public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
+public function getType(): string
 {
-if ($event->getType() === Type\AboutPage::class) {
-$event->registerAdditionalProperty('abstract');
+return 'BusOrCoach';
 }
-if (ExtensionManagementUtility::isLoaded('schema_auto')) {
-if ($event->getType() === AutoType\BusOrCoach::class) {
-$event->registerAdditionalProperty('asin');
-$event->registerAdditionalProperty('callSign');
-}
-}
-if (ExtensionManagementUtility::isLoaded('schema_health')) {
-if ($event->getType() === HealthType\Drug::class) {
-$event->registerAdditionalProperty('includedInHealthInsurancePlan');
-$event->registerAdditionalProperty('positiveNotes');
-}
-if ($event->getType() === HealthType\Joint::class) {
-$event->registerAdditionalProperty('funding');
-}
-}
+
+public function getAdditionalProperties(): array
+{
+return [
+'asin',
+'callSign',
+];
 }
 }
 EXPECTED,
