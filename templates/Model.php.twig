@@ -15,9 +15,6 @@ use Brotkrueml\Schema\Core\Model\AbstractType;
 
 /**
  * {{ type.comment.text|raw }}
-{% if type.isEnumeration %}
-    * @deprecated This type represents an enumeration, use the specific {{ type.id.label|raw }} enum instead.
-{% endif %}
  */
 #[Type('{{ type.id.label|raw }}')]
 {% for manual in manuals %}

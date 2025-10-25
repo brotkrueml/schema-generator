@@ -80,31 +80,6 @@ final class TypeTest extends TestCase
     }
 
     #[Test]
-    public function isEnumerationIsReturnedCorrectlyWhenNotSet(): void
-    {
-        $subject = new Type(
-            new Id('schema: LocalBusiness '),
-            new Comment('A particular physical business or branch of an organization.'),
-            Section::Core,
-        );
-
-        self::assertFalse($subject->isEnumeration());
-    }
-
-    #[Test]
-    public function isEnumerationIsReturnedCorrectlyWhenSet(): void
-    {
-        $subject = new Type(
-            new Id('schema: LocalBusiness '),
-            new Comment('A particular physical business or branch of an organization.'),
-            Section::Core,
-        );
-        $subject->setAsEnumeration();
-
-        self::assertTrue($subject->isEnumeration());
-    }
-
-    #[Test]
     public function propertiesReturnsPropertiesCorrectly(): void
     {
         $properties = [

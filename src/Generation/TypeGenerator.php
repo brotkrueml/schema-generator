@@ -59,6 +59,10 @@ final readonly class TypeGenerator
     private function generateModelClasses(Section $section, Types $types, string $basePath): void
     {
         foreach ($types as $type) {
+            if ($type->isEnumeration()) {
+                continue;
+            }
+
             if ($type->section() !== $section) {
                 continue;
             }
@@ -89,6 +93,10 @@ final readonly class TypeGenerator
     private function generateViewHelperClasses(Section $section, Types $types, string $basePath): void
     {
         foreach ($types as $type) {
+            if ($type->isEnumeration()) {
+                continue;
+            }
+
             if ($type->section() !== $section) {
                 continue;
             }
