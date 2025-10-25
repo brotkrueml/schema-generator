@@ -14,14 +14,14 @@
 		"ext-ctype": "*",
 		"ext-intl": "*",
 		"ext-mbstring": "*",
-		"monolog/monolog": "^3.8",
-		"php-di/php-di": "^7.0",
-		"symfony/console": "^7.2",
-		"twig/twig": "^3.18"
+		"monolog/monolog": "^3.9",
+		"php-di/php-di": "^7.1",
+		"symfony/console": "^7.3",
+		"twig/twig": "^3.21"
 	},
 	"require-dev": {
-        "brotkrueml/coding-standards": "~6.1.0",
-		"phpunit/phpunit": "^11.5"
+        "brotkrueml/coding-standards": "~6.2.0",
+		"phpunit/phpunit": "^12.4"
 	},
     "replace": {
         "symfony/polyfill-ctype": "*",
