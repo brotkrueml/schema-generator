@@ -197,11 +197,11 @@ final readonly class SchemaCollector
             return;
         }
 
-        if ($termType === 'rdfs:Class') {
+        if ($termType === 'rdfs:Class' && \str_starts_with($term['@id'], 'schema:')) {
             $this->types->addType($this->typeBuilder->build($term));
             return;
         }
-        if ($termType === 'rdf:Property') {
+        if ($termType === 'rdf:Property' && \str_starts_with($term['@id'], 'schema:')) {
             $this->properties->addProperty($this->propertyBuilder->build($term));
             return;
         }
