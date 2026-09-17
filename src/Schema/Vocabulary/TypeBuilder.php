@@ -36,7 +36,7 @@ final readonly class TypeBuilder
 
         foreach ($parents as $parent) {
             $id = $parent['@id'] ?? throw InvalidTermException::fromKey('schema:domainIncludes|@id', $term);
-            if (!str_starts_with($id, 'schema:')) {
+            if (! \str_starts_with($id, 'schema:')) {
                 continue;
             }
             $type->addParentId(new Id($id));
