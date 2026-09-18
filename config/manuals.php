@@ -7,21 +7,33 @@ return [
         [
             'publisher' => 'Google',
             'text' => 'Merchant listing: 3D Model',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#3d-model-example',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#3d-model-properties',
+        ],
+    ],
+    'AdultOrientedEnumeration' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Merchant listing: Product information',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#product-properties',
+        ],
+        [
+            'publisher' => 'Google',
+            'text' => 'Product variant: ProductGroup',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-variants#productgroup',
         ],
     ],
     'AggregateOffer' => [
         [
             'publisher' => 'Google',
-            'text' => 'Product snippet: Shopping aggregator page',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-snippet#shopping-aggregator-page-example',
+            'text' => 'Product snippet: Offer details',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-snippet#aggregate-offer-properties',
         ],
     ],
     'AggregateRating' => [
         [
             'publisher' => 'Google',
             'text' => 'Review snippet',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/review-snippet#aggregate-rating',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/review-snippet#aggregated-rating-type-definition',
         ],
         [
             'publisher' => 'Google',
@@ -32,120 +44,103 @@ return [
     'Answer' => [
         [
             'publisher' => 'Google',
-            'text' => 'FAQ',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/faqpage',
-        ],
-        [
-            'publisher' => 'Google',
             'text' => 'Q&A',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/qapage',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/qapage#answer',
         ],
         [
             'publisher' => 'Google',
             'text' => 'Education Q&A',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/education-qa',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/education-qa#question',
         ],
     ],
     'Article' => [
         [
             'publisher' => 'Google',
             'text' => 'Article',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/article',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/article#article-types',
         ],
     ],
     'BlogPosting' => [
         [
             'publisher' => 'Google',
             'text' => 'Article',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/article',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/article#article-types',
         ],
     ],
     'Book' => [
         [
             'publisher' => 'Google',
             'text' => 'Book actions',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/book',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/book#book-entity',
+        ],
+    ],
+    'BorrowAction' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Book actions',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/book#borrowaction-potentialaction',
         ],
     ],
     'BreadcrumbList' => [
         [
             'publisher' => 'Google',
             'text' => 'Breadcrumb',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/breadcrumb',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#breadcrumb-list',
         ],
     ],
-    'Car' => [
+    'BroadcastEvent' => [
         [
             'publisher' => 'Google',
-            'text' => 'Vehicle listing',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/vehicle-listing',
+            'text' => 'Video',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/video#broadcast-event',
+        ],
+    ],
+    'CategoryCode' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Merchant listing: Product information',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#product-properties',
         ],
     ],
     'Certification' => [
         [
             'publisher' => 'Google',
-            'text' => 'Merchant listing: Certifications',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#certification-example',
-        ],
-    ],
-    'Claim' => [
-        [
-            'publisher' => 'Google',
-            'text' => 'Fact check: Claim',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/factcheck#claim',
-        ],
-    ],
-    'ClaimReview' => [
-        [
-            'publisher' => 'Google',
-            'text' => 'Fact check',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/factcheck',
+            'text' => 'Merchant listing: Offer details',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#certification-properties',
         ],
     ],
     'Clip' => [
         [
             'publisher' => 'Google',
-            'text' => 'Learning video',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/learning-video',
+            'text' => 'Video',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/video#clip',
         ],
     ],
     'Comment' => [
         [
             'publisher' => 'Google',
             'text' => 'Discussion forum',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum#comment',
         ],
     ],
     'ContactPoint' => [
         [
             'publisher' => 'Google',
             'text' => 'Organization',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/organization',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/organization#structured-data-type-definitions',
         ],
     ],
     'Course' => [
         [
             'publisher' => 'Google',
-            'text' => 'Course info',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/course-info',
-        ],
-        [
-            'publisher' => 'Google',
             'text' => 'Course list',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/course',
-        ],
-    ],
-    'CourseInstance' => [
-        [
-            'publisher' => 'Google',
-            'text' => 'Course info',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/course-info',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/course#course',
         ],
     ],
     'CreativeWork' => [
         [
             'publisher' => 'Yandex',
-            'text' => 'Essays',
+            'text' => 'Student papers',
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/essay.html',
         ],
     ],
@@ -153,56 +148,68 @@ return [
         [
             'publisher' => 'Google',
             'text' => 'Dataset',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/dataset',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/dataset#publication',
         ],
     ],
     'DataDownload' => [
         [
             'publisher' => 'Google',
             'text' => 'Dataset',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/dataset',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/dataset#download',
+        ],
+    ],
+    'DataFeed' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Book actions',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/book#datafeed-entity',
         ],
     ],
     'Dataset' => [
         [
             'publisher' => 'Google',
             'text' => 'Dataset',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/dataset',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/dataset#dataset',
+        ],
+    ],
+    'DefinedRegion' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Merchant listing: Shipping',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#defined-region-properties',
+        ],
+        [
+            'publisher' => 'Google',
+            'text' => 'Merchant shipping policy',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/shipping-policy#defined-region-properties',
         ],
     ],
     'DiscussionForumPosting' => [
         [
             'publisher' => 'Google',
             'text' => 'Discussion forum',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum#dfp',
         ],
     ],
     'EmployerAggregateRating' => [
         [
             'publisher' => 'Google',
             'text' => 'Employer aggregate rating',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/employer-rating',
-        ],
-    ],
-    'EnergyConsumptionDetails' => [
-        [
-            'publisher' => 'Google',
-            'text' => 'Energy efficiency ratings',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#energy-efficiency-example',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/employer-rating#employer-aggregate-rating-definition',
         ],
     ],
     'Event' => [
         [
             'publisher' => 'Google',
             'text' => 'Event',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/event',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/event#structured-data-type-definitions',
         ],
     ],
-    'FAQPage' => [
+    'FulfillmentTypeEnumeration' => [
         [
             'publisher' => 'Google',
-            'text' => 'FAQ',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/faqpage',
+            'text' => 'Merchant shipping policy: Shipping service',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/shipping-policy#merchant-shipping-policy-properties',
         ],
     ],
     'HowToDirection' => [
@@ -237,14 +244,43 @@ return [
         [
             'publisher' => 'Google',
             'text' => 'Image metadata',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata#structured-data-type-definitions',
+        ],
+    ],
+    'InteractionCounter' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Discussion forum',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum#interaction-counter',
+        ],
+        [
+            'publisher' => 'Google',
+            'text' => 'Profile page',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/profile-page#profile-target-specification',
+        ],
+    ],
+    'IPTCDigitalSourceEnumeration' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Discussion forum',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum#dfp',
+        ],
+        [
+            'publisher' => 'Google',
+            'text' => 'Q&A: Question',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/qapage#question',
         ],
     ],
     'ItemList' => [
         [
             'publisher' => 'Google',
             'text' => 'Carousel',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/carousel',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/carousel#item-list',
+        ],
+        [
+            'publisher' => 'Google',
+            'text' => 'Course list',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/course#item-list',
         ],
         [
             'publisher' => 'Google',
@@ -252,58 +288,81 @@ return [
             'link' => 'https://developers.google.com/search/docs/appearance/structured-data/recipe#item-list',
         ],
     ],
-    'InteractionCounter' => [
-        [
-            'publisher' => 'Google',
-            'text' => 'Profile page',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/profile-page',
-        ],
-    ],
     'JobPosting' => [
         [
             'publisher' => 'Google',
             'text' => 'Job posting',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/job-posting',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/job-posting#job-posting-definition',
         ],
     ],
     'LearningResource' => [
         [
             'publisher' => 'Google',
-            'text' => 'Learning video',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/learning-video',
+            'text' => 'Math solver',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/math-solvers#learning-resource',
         ],
+    ],
+    'Library' => [
         [
             'publisher' => 'Google',
-            'text' => 'Math solver',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/math-solvers',
+            'text' => 'Book actions',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/book#library-member',
+        ],
+    ],
+    'LibrarySystem' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Book actions',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/book#librarysystem',
+        ],
+    ],
+    'ListItem' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Breadcrumb',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#list-item',
         ],
     ],
     'LocalBusiness' => [
         [
             'publisher' => 'Google',
             'text' => 'Local business',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/local-business',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/local-business#local-business-properties',
         ],
     ],
     'MathSolver' => [
         [
             'publisher' => 'Google',
             'text' => 'Math solver',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/math-solvers',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/math-solvers#math-solver',
+        ],
+    ],
+    'MemberProgram' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Loyalty program',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/loyalty-program#member-program-properties',
+        ],
+    ],
+    'MemberProgramTier' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Loyalty program',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/loyalty-program#memberprogram-tier-properties',
         ],
     ],
     'MerchantReturnPolicy' => [
         [
             'publisher' => 'Google',
-            'text' => 'Merchant listing: Return details',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#product-with-returns-example',
+            'text' => 'Merchant listing: Returns',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#merchant-return-policy-properties',
         ]
     ],
     'MobileApplication' => [
         [
             'publisher' => 'Google',
             'text' => 'Software app',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/software-app',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/software-app#softwareapplication',
         ],
         [
             'publisher' => 'Yandex',
@@ -311,18 +370,11 @@ return [
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/software.html',
         ],
     ],
-    'MonetaryAmountDistribution' => [
-        [
-            'publisher' => 'Google',
-            'text' => 'Estimated salary',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/estimated-salary',
-        ],
-    ],
     'Movie' => [
         [
             'publisher' => 'Google',
             'text' => 'Movie carousel',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/movie',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/movie#movie',
         ],
         [
             'publisher' => 'Yandex',
@@ -334,7 +386,7 @@ return [
         [
             'publisher' => 'Google',
             'text' => 'Article',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/article',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/article#article-types',
         ],
         [
             'publisher' => 'Google',
@@ -342,32 +394,35 @@ return [
             'link' => 'https://developers.google.com/search/docs/data-types/paywalled-content',
         ],
     ],
-    'Occupation' => [
-        [
-            'publisher' => 'Google',
-            'text' => 'Estimated salary',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/estimated-salary',
-        ],
-    ],
     'Offer' => [
         [
             'publisher' => 'Google',
             'text' => 'Merchant listing',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#offer-properties',
+        ],
+        [
+            'publisher' => 'Google',
+            'text' => 'Product snippet: Offer details',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-snippet#offer-properties',
+        ],
+        [
+            'publisher' => 'Yandex',
+            'text' => 'Catalogs',
+            'link' => 'https://yandex.com/support/webmaster/en/supported-schemas/catalogs',
+        ],
+    ],
+    'OfferCatalog' => [
+        [
+            'publisher' => 'Yandex',
+            'text' => 'Catalogs',
+            'link' => 'https://yandex.com/support/webmaster/en/supported-schemas/catalogs',
         ],
     ],
     'OfferShippingDetails' => [
         [
             'publisher' => 'Google',
-            'text' => 'Merchant listing: Shipping details',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#product-with-shipping-example',
-        ],
-    ],
-    'OnlineStore' => [
-        [
-            'publisher' => 'Google',
-            'text' => 'Organization: Online store with return policy',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/organization#example-online-store',
+            'text' => 'Merchant listing: Shipping',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#offer-shipping-details-properties',
         ],
     ],
     'OpeningHoursSpecification' => [
@@ -381,7 +436,12 @@ return [
         [
             'publisher' => 'Google',
             'text' => 'Organization',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/organization',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/organization#structured-data-type-definitions',
+        ],
+        [
+            'publisher' => 'Google',
+            'text' => 'Profile page',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/profile-page#profile-target-specification',
         ],
         [
             'publisher' => 'Yandex',
@@ -389,11 +449,18 @@ return [
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/address-organization.html',
         ],
     ],
+    'PeopleAudience' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Merchant listing: Offer details',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#people-audience-properties',
+        ],
+    ],
     'Person' => [
         [
             'publisher' => 'Google',
             'text' => 'Profile page',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/profile-page',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/profile-page#profile-target-specification',
         ],
     ],
     'Place' => [
@@ -407,7 +474,7 @@ return [
         [
             'publisher' => 'Google',
             'text' => 'Organization',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/organization',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/organization#structured-data-type-definitions',
         ],
         [
             'publisher' => 'Yandex',
@@ -419,17 +486,12 @@ return [
         [
             'publisher' => 'Google',
             'text' => 'Product',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-snippet#product-properties',
         ],
         [
             'publisher' => 'Google',
-            'text' => 'Product variant',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-variants',
-        ],
-        [
-            'publisher' => 'Google',
-            'text' => 'Merchant listing',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing',
+            'text' => 'Merchant listing: Product information',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#product-properties',
         ],
         [
             'publisher' => 'Yandex',
@@ -441,64 +503,59 @@ return [
         [
             'publisher' => 'Google',
             'text' => 'Product variant',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-variants',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-variants#productgroup',
         ]
     ],
     'ProfilePage' => [
         [
             'publisher' => 'Google',
             'text' => 'Profile page',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/profile-page',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/profile-page#review-properties',
         ],
     ],
     'QAPage' => [
         [
             'publisher' => 'Google',
             'text' => 'Q&A',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/qapage',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/qapage#qa-page',
+        ],
+        [
+            'publisher' => 'Yandex',
+            'text' => 'Questions and answers on mobile search results',
+            'link' => 'https://yandex.com/support/webmaster/en/supported-schemas/q-and-a',
         ],
     ],
     'Question' => [
         [
             'publisher' => 'Google',
-            'text' => 'FAQ',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/faqpage',
-        ],
-        [
-            'publisher' => 'Google',
             'text' => 'Q&A',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/qapage',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/qapage#question',
         ],
         [
             'publisher' => 'Google',
             'text' => 'Education Q&A',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/education-qa',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/education-qa#question',
         ],
     ],
     'Quiz' => [
         [
             'publisher' => 'Google',
-            'text' => 'Practice problem',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/practice-problems',
-        ],
-        [
-            'publisher' => 'Google',
             'text' => 'Education Q&A',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/education-qa',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/education-qa#quiz',
         ],
     ],
-    'Rating' => [
+    'ReadAction' => [
         [
             'publisher' => 'Google',
-            'text' => 'Fact check: Rating',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/factcheck#rating',
+            'text' => 'Book actions',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/book#readaction-potentialaction',
         ],
     ],
     'Recipe' => [
         [
             'publisher' => 'Google',
             'text' => 'Recipe',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/recipe',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/recipe#recipe-properties',
         ],
         [
             'publisher' => 'Yandex',
@@ -510,26 +567,75 @@ return [
         [
             'publisher' => 'Google',
             'text' => 'Review snippet',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/review-snippet',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/review-snippet#review-properties',
         ],
         [
             'publisher' => 'Google',
-            'text' => 'Product snippet: Pros and cons',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-snippet#pros-cons-example',
+            'text' => 'Product snippet',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-snippet#product-reviews',
+        ],
+    ],
+    'SeekToAction' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Video',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/video#seek',
+        ],
+    ],
+    'ServicePeriod' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Merchant shipping policy',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/shipping-policy#shipping-service-handling-time-properties',
+        ],
+    ],
+    'SizeSpecification' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Merchant listing: Offer details',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#size-specification-properties',
+        ],
+    ],
+    'ShippingConditions' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Merchant shipping policy',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/shipping-policy#merchant-shipping-conditions-properties',
         ],
     ],
     'ShippingDeliveryTime' => [
         [
             'publisher' => 'Google',
-            'text' => 'Merchant listing: Shipping details',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#product-with-shipping-example',
+            'text' => 'Merchant listing: Shipping',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#shipping-delivery-time-properties',
+        ],
+    ],
+    'ShippingRateSettings' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Merchant shipping policy',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/shipping-policy#shipping-rate-settings-properties',
+        ],
+    ],
+    'ShippingService' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Merchant shipping policy',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/shipping-policy#merchant-shipping-policy-properties',
+        ],
+    ],
+    'SocialMediaPosting' => [
+        [
+            'publisher' => 'Google',
+            'text' => 'Discussion forum',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum#dfp',
         ],
     ],
     'SoftwareApplication' => [
         [
             'publisher' => 'Google',
             'text' => 'Software app',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/software-app',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/software-app#softwareapplication',
         ],
         [
             'publisher' => 'Yandex',
@@ -537,42 +643,30 @@ return [
             'link' => 'https://yandex.com/support/webmaster/supported-schemas/software.html',
         ],
     ],
-    'SolveMathAction' => [
-        [
-            'publisher' => 'Google',
-            'text' => 'Math solver',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/math-solvers',
-        ],
-    ],
     'UnitPriceSpecification' => [
         [
             'publisher' => 'Google',
-            'text' => 'Merchant listing: Pricing',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#pricing-examples',
+            'text' => 'Merchant listing: Offer details',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#unit-price-specification-properties',
         ],
         [
             'publisher' => 'Google',
-            'text' => 'Merchant listing: Sale pricing',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#sale-pricing-example',
-        ],
-        [
-            'publisher' => 'Google',
-            'text' => 'Merchant listing: Member prices',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#member-price-example',
+            'text' => 'Product snippet: Offer details',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/product-snippet#unit-price-specification-properties',
         ],
     ],
     'VacationRental' => [
         [
             'publisher' => 'Google',
             'text' => 'Vacation rental',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/vacation-rental',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/vacation-rental#vacation-rental-sd',
         ],
     ],
     'VideoGame' => [
         [
             'publisher' => 'Google',
             'text' => 'Software app',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/software-app',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/software-app#softwareapplication',
         ],
         [
             'publisher' => 'Yandex',
@@ -584,24 +678,12 @@ return [
         [
             'publisher' => 'Google',
             'text' => 'Video',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/video',
-        ],
-        [
-            'publisher' => 'Google',
-            'text' => 'Learning video',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/learning-video',
+            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/video#video-object',
         ],
         [
             'publisher' => 'Yandex',
             'text' => 'Video',
             'link' => 'https://yandex.com/support/video/en/partners/schema-org.html',
-        ],
-    ],
-    'VirtualLocation' => [
-        [
-            'publisher' => 'Google',
-            'text' => 'Online event',
-            'link' => 'https://developers.google.com/search/docs/appearance/structured-data/event#online-event',
         ],
     ],
     'WebApplication' => [
